@@ -13,7 +13,6 @@ class UEFI:
 
     def __init__(self):
         self.efi_partition = self.get_efi_partition()
-        self.efi_mountpoint = self.get_efi_mountpoint()
         self.update()
 
     def get_efi_partition(self):
@@ -82,6 +81,7 @@ class UEFI:
         self.boot_current = None
         self.boot_next = None
         self.timeout = 0
+        self.efi_mountpoint = self.get_efi_mountpoint()
         p = subprocess.Popen('efibootmgr', stdout=subprocess.PIPE)
         output = p.communicate()[0].splitlines()
         retval = p.returncode
