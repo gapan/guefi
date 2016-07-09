@@ -11,7 +11,32 @@ import os
 class UEFI:
 
     def __init__(self):
+        self.efi_partition = self.get_efi_partition()
         self.update()
+
+    def get_efi_partition(self):
+        dev_nodes = os.listdir('/dev/')
+        numbers = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+        hd = None
+        for i in dev_nodes:
+            if i.startswith('sd'):
+                if not i.endswith(numbers):
+                    hd = '/dev/'+i
+                    break
+        if hd:
+            p = subprocess.Popen(['gdisk', '-l', hd], stdout=subprocess.PIPE)
+            output = p.communicate()[0].splitlines()
+            retval = p.returncode
+            if retval == 0:
+                for line in output:
+                    if ' EF00 ' in line:
+                        partition = line.lstrip(' ').partition(' ')[0]
+                        return hd+partition
+            else:
+                return None
+        else:
+            return None
+
 
     def add_entry(self, entry):
         self.entries_list.append(entry)
