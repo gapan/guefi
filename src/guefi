@@ -13,6 +13,7 @@ class UEFI:
 
     def __init__(self):
         self.efi_partition = self.get_efi_partition()
+        self.efi_mountpoint = self.get_efi_mountpoint()
         self.update()
 
     def get_efi_partition(self):
@@ -38,6 +39,17 @@ class UEFI:
         else:
             return None
 
+    def get_efi_mountpoint(self):
+        p = subprocess.Popen(['findmnt', self.efi_partition],
+                stdout=subprocess.PIPE)
+        output = p.communicate()[0].splitlines()
+        retval = p.returncode
+        if retval == 0:
+            for line in output:
+                if self.efi_partition in line:
+                    return line.partition(' ')[0]
+        else:
+            return None
 
     def add_entry(self, entry):
         self.entries_list.append(entry)
@@ -193,6 +205,9 @@ class GUEFI:
 
         if not self.uefi.efi_partition:
             print('No UEFI partition detected. Aborting.')
+            sys.exit(1)
+        if not self.uefi.efi_mountpoint:
+            print('UEFI parition is not mounted. Aborting.')
             sys.exit(1)
 
         builder.connect_signals(self)
