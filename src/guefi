@@ -116,7 +116,12 @@ class GUEFI:
         pass
 
     def on_button_apply_clicked(self, widget):
-        pass
+        boot_order = []
+        for i in self.liststore_entries:
+            boot_order.append(i[1])
+        cmd = ['efibootmgr', '-o', ','.join(boot_order)]
+        p = subprocess.Popen(cmd)
+        print(p.returncode)
 
     def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
         pass
@@ -132,13 +137,17 @@ class GUEFI:
             for i in self.uefi.entries_list:
                 if i.number not in boot_order:
                     boot_order.append(i.number)
-        for i in self.uefi.entries_list:
-            if i.number == self.uefi.boot_next:
+        # now add everything to the liststore, according to the boot order
+        for n in boot_order:
+            if n == self.uefi.boot_next:
                 boot_next = True
             else:
                 boot_next = False
-            self.liststore_entries.append([i.name, i.number, i.enabled,
-                boot_next])
+            for j in self.uefi.entries_list:
+                if j.number == n:
+                    name = j.name
+                    enabled = j.enabled
+            self.liststore_entries.append([name, n, enabled, boot_next])
 
 
     def __init__(self):
