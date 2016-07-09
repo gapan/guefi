@@ -1,0 +1,164 @@
+#!/usr/bin/env python
+# vim:et:sta:sts=4:sw=4:ts=8:tw=79:
+
+from __future__ import print_function
+import subprocess
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+import os
+
+class UEFI:
+
+    def __init__(self):
+        self.update()
+
+    def add_entry(self, entry):
+        self.entries_list.append(entry)
+
+    def create_entry(self, name, loader=None):
+        if loader:
+            cmd = ['efibootmgr', '-c', '-L', self.name, '-l', loader]
+        else:
+            cmd = ['efibootmgr', '-c', '-L', self.name]
+        p = subprocess.Popen(cmd)
+        return p.returncode
+
+    def delete_entry(self, number):
+        for i in self.entries_list:
+            if i.number == number:
+                self.entries_list.pop(self.entries_list.index(i))
+                break
+
+    def set_timeout(self, timeout):
+        p = subprocess.Popen(['efibootmgr', '-t', timeout])
+        return p.returncode
+
+    def delete_timeout(self):
+        p = subprocess.Popen(['efibootmgr', '-T'])
+        return p.returncode
+
+    def update(self):
+        self.entries_list = []
+        self.boot_order = []
+        self.boot_current = None
+        self.boot_next = None
+        self.timeout = 0
+        p = subprocess.Popen('efibootmgr', stdout=subprocess.PIPE)
+        output = p.communicate()[0].splitlines()
+        retval = p.returncode
+        if retval == 0:
+            for line in output:
+                part1 = line.partition(' ')[0]
+                part2 = line.partition(' ')[2]
+                if part1.startswith('BootCurrent:'):
+                    self.boot_current = part2
+                elif part1.startswith('BootNext:'):
+                    self.boot_next = part2
+                elif part1.startswith('BootOrder:'):
+                    for i in part2.split(','):
+                        self.boot_order.append(i)
+                elif part1.startswith('Timeout:'):
+                    self.timeout = part2.partition(' sec')[0]
+                elif part1.startswith('Boot'):
+                    if part1.endswith('*'):
+                        enabled = True
+                        number = part1.partition('*')[0].partition('Boot')[2]
+                    else:
+                        enabled = False
+                        number = part1.partition('Boot')[2]
+                    name = part2
+                    entry = Entry(number, name, enabled)
+                    self.add_entry(entry)
+        return retval
+
+class Entry:
+
+    def __init__(self, number, name, loader='\elilo.efi', enabled=True, boot_next=False):
+        self.number = number
+        self.name = name
+        self.enabled = enabled
+        self.loader = loader
+        self.boot_next = boot_next
+
+
+    def activate(self, number):
+        p = subprocess.Popen(['efibootmgr', '-a', '-b', self.number])
+        return p.returncode
+
+    def deactivate(self):
+        p = subprocess.Popen(['efibootmgr', '-A', '-b', self.number])
+        return p.returncode
+
+    def delete(self):
+        p = subprocess.Popen(['efibootmgr', '-B', '-b', self.number])
+        return p.returncode
+
+
+class GUEFI:
+
+    def gtk_main_quit(self, widget, data=None):
+        Gtk.main_quit()
+
+    def on_button_add_clicked(self, widget):
+        pass
+
+    def on_button_edit_clicked(self, widget):
+        pass
+
+    def on_button_remove_clicked(self, widget):
+        pass
+
+    def on_button_move_up_clicked(self, widget):
+        pass
+
+    def on_button_move_down_clicked(self, widget):
+        pass
+
+    def on_button_apply_clicked(self, widget):
+        pass
+
+    def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
+        pass
+
+    def on_cellrenderertoggle_enabled_toggled(self, widget, data=None):
+        pass
+
+    def update_list(self):
+        boot_order = self.uefi.boot_order
+        # if the boot order does not include all UEFI entries, then append the
+        # missing ones at the end of the list
+        if len(boot_order) < len(self.uefi.entries_list):
+            for i in self.uefi.entries_list:
+                if i.number not in boot_order:
+                    boot_order.append(i.number)
+        for i in self.uefi.entries_list:
+            if i.number == self.uefi.boot_next:
+                boot_next = True
+            else:
+                boot_next = False
+            self.liststore_entries.append([i.name, i.number, i.enabled,
+                boot_next])
+
+
+    def __init__(self):
+        self.uefi = UEFI()
+
+        builder = Gtk.Builder()
+        if os.path.exists('guefi.ui'):
+            builder.add_from_file('guefi.ui')
+        elif os.path.exists('/usr/share/guefi/guefi.ui'):
+            builder.add_from_file('/usr/share/guefi/guefi-gtk.ui')
+        
+        # Main window
+        self.window = builder.get_object('guefi')
+        self.treeview_entries = builder.get_object('treeview_entries')
+        self.liststore_entries = builder.get_object('liststore_entries')
+        self.update_list()
+
+        builder.connect_signals(self)
+
+if __name__ == "__main__":
+    app = GUEFI()
+    app.window.show_all()
+    Gtk.main()
