@@ -7,6 +7,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import os
+import sys
 
 class UEFI:
 
@@ -189,6 +190,10 @@ class GUEFI:
         self.treeview_entries = builder.get_object('treeview_entries')
         self.liststore_entries = builder.get_object('liststore_entries')
         self.update_list()
+
+        if not self.uefi.efi_partition:
+            print('No UEFI partition detected. Aborting.')
+            sys.exit(1)
 
         builder.connect_signals(self)
 
