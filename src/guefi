@@ -179,9 +179,7 @@ class GUEFI:
                     Gtk.ButtonsType.YES_NO,
                     _("Are you sure you want to remove this EFI boot entry?"))
             dialog.set_modal(self.window)
-            name_string = "%s: %s" % (_("Name"), name)
-            number_string ="%s: %s" % (_("Boot Number"), number)
-            dialog.format_secondary_text("%s\n%s" % (name_string, number_string))
+            dialog.format_secondary_text(name)
             response = dialog.run()
             p = 0
             if response == Gtk.ResponseType.YES:
@@ -314,6 +312,8 @@ class GUEFI:
         # Main window
         self.window = builder.get_object('guefi')
         self.treeview_entries = builder.get_object('treeview_entries')
+        self.treeviewcolumn_boot_number = builder.get_object('treeviewcolumn_boot_number')
+        self.treeviewcolumn_boot_number.set_visible(False)
         self.liststore_entries = builder.get_object('liststore_entries')
         self.update_list()
 
