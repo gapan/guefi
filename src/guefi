@@ -44,20 +44,15 @@ class UEFI:
             if i.startswith('sd'):
                 if not i.endswith(numbers):
                     hd = '/dev/'+i
-                    break
-        if hd:
-            p = subprocess.Popen(['gdisk', '-l', hd], stdout=subprocess.PIPE)
-            output = p.communicate()[0].splitlines()
-            retval = p.returncode
-            if retval == 0:
-                for line in output:
-                    if ' EF00 ' in line:
-                        partition = line.lstrip(' ').partition(' ')[0]
-                        return hd,partition
-            else:
-                return None
-        else:
-            return None
+                    p = subprocess.Popen(['gdisk', '-l', hd], stdout=subprocess.PIPE)
+                    output = p.communicate()[0].splitlines()
+                    retval = p.returncode
+                    if retval == 0:
+                        for line in output:
+                            if ' EF00 ' in line:
+                                partition = line.lstrip(' ').partition(' ')[0]
+                                return hd,partition
+        return None
 
     def get_efi_mountpoint(self):
         partition = "%s%s" % (self.efi_hd, self.efi_partition)
