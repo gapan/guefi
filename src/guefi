@@ -170,30 +170,33 @@ class GUEFI:
         self.dialog_add.show()
 
     def on_button_remove_clicked(self, widget):
-        selectedline = self.treeview_entries.get_selection()
-        self.liststore_entries, iter = selectedline.get_selected()
-        name = self.liststore_entries.get_value(iter, 0)
-        number = self.liststore_entries.get_value(iter, 1)
-        dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.YES_NO,
-                _("Are you sure you want to remove this EFI boot entry?"))
-        dialog.set_modal(self.window)
-        name_string = "%s: %s" % (_("Name"), name)
-        number_string ="%s: %s" % (_("Boot Number"), number)
-        dialog.format_secondary_text("%s\n%s" % (name_string, number_string))
-        response = dialog.run()
-        p = 0
-        if response == Gtk.ResponseType.YES:
-            p = subprocess.call(['efibootmgr', '-B', '-b', number])
-        dialog.destroy()
-        self.update_list()
-        if p != 0:
-            msg = _("Could not delete boot entry")
-            dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
+        try:
+            selectedline = self.treeview_entries.get_selection()
+            self.liststore_entries, iter = selectedline.get_selected()
+            name = self.liststore_entries.get_value(iter, 0)
+            number = self.liststore_entries.get_value(iter, 1)
+            dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
+                    Gtk.ButtonsType.YES_NO,
+                    _("Are you sure you want to remove this EFI boot entry?"))
             dialog.set_modal(self.window)
-            dialog.run()
+            name_string = "%s: %s" % (_("Name"), name)
+            number_string ="%s: %s" % (_("Boot Number"), number)
+            dialog.format_secondary_text("%s\n%s" % (name_string, number_string))
+            response = dialog.run()
+            p = 0
+            if response == Gtk.ResponseType.YES:
+                p = subprocess.call(['efibootmgr', '-B', '-b', number])
             dialog.destroy()
+            self.update_list()
+            if p != 0:
+                msg = _("Could not delete boot entry")
+                dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
+                                    Gtk.ButtonsType.OK, msg)
+                dialog.set_modal(self.window)
+                dialog.run()
+                dialog.destroy()
+        except TypeError:
+            pass
 
     def on_button_move_up_clicked(self, widget):
         pass
