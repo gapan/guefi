@@ -158,7 +158,29 @@ class GUEFI:
         pass
 
     def on_button_remove_clicked(self, widget):
-        pass
+        selectedline = self.treeview_entries.get_selection()
+        self.liststore_entries, iter = selectedline.get_selected()
+        name = self.liststore_entries.get_value(iter, 0)
+        number = self.liststore_entries.get_value(iter, 1)
+        dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
+                Gtk.ButtonsType.YES_NO,
+                "Are you sure you want to remove this EFI boot entry?")
+        dialog.set_modal(self.window)
+        name_string = "%s: %s" % ("Name", name)
+        number_string ="%s: %s" % ("Number", number)
+        dialog.format_secondary_text("%s\n%s" % (name_string, number_string))
+        response = dialog.run()
+        if response == Gtk.ResponseType.YES:
+            p = subprocess.call(['efibootmgr', '-B', '-b', number])
+        dialog.destroy()
+        self.update_list()
+        if p != 0:
+            msg = "Could not delete boot entry"
+            dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.window)
+            dialog.run()
+            dialog.destroy()
 
     def on_button_move_up_clicked(self, widget):
         pass
