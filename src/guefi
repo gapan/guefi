@@ -241,7 +241,6 @@ class GUEFI:
                 dialog.run()
                 dialog.destroy()
             else:
-                print('done')
                 self.update_list()
                 self.dialog_add.hide()
 
