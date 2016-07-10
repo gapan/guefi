@@ -53,7 +53,6 @@
                   <object class="GtkTreeView" id="treeview_entries">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">You can rearrange the boot order by dragging items.</property>
                     <property name="model">liststore_entries</property>
                     <property name="headers_clickable">False</property>
                     <property name="reorderable">True</property>
@@ -165,37 +164,21 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="button_move_up">
-                        <property name="label" translatable="yes">Move Up</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="image">image_up</property>
-                        <signal name="clicked" handler="on_button_move_up_clicked" swapped="no"/>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">3</property>
-                      </packing>
+                      <placeholder/>
                     </child>
                     <child>
-                      <object class="GtkButton" id="button_move_down">
-                        <property name="label" translatable="yes">Move Down</property>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <object class="GtkHSeparator" id="hseparator1">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="image">image_down</property>
-                        <signal name="clicked" handler="on_button_move_down_clicked" swapped="no"/>
+                        <property name="can_focus">False</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
                         <property name="position">4</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -218,6 +201,22 @@
             <property name="fill">True</property>
             <property name="padding">4</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xalign">0</property>
+            <property name="label" translatable="yes">You can rearrange the boot order by dragging items.</property>
+            <attributes>
+              <attribute name="style" value="italic"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
