@@ -198,12 +198,6 @@ class GUEFI:
         except TypeError:
             pass
 
-    def on_button_move_up_clicked(self, widget):
-        pass
-
-    def on_button_move_down_clicked(self, widget):
-        pass
-
     def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
         pass
 
