@@ -207,8 +207,14 @@ class GUEFI:
         for i in self.liststore_entries:
             boot_order.append(i[1])
         cmd = ['efibootmgr', '-o', ','.join(boot_order)]
-        p = subprocess.Popen(cmd)
-        print(p.returncode)
+        p = subprocess.call(cmd)
+        if p != 0:
+            msg = _("Could not set boot order")
+            dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.window)
+            dialog.run()
+            dialog.destroy()
 
     def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
         pass
