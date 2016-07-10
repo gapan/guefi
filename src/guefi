@@ -9,6 +9,15 @@ from gi.repository import Gtk
 import os
 import sys
 
+# Internationalization
+import locale
+import gettext
+locale.setlocale(locale.LC_ALL, '')
+locale.bindtextdomain("guefi", "/usr/share/locale")
+gettext.bindtextdomain("guefi", "/usr/share/locale")
+gettext.textdomain("guefi")
+_ = gettext.gettext
+
 
 def efi_name_test(name):
     '''Tests if name is a valid one for an EFI boot entry.'''
@@ -164,18 +173,19 @@ class GUEFI:
         number = self.liststore_entries.get_value(iter, 1)
         dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO,
-                "Are you sure you want to remove this EFI boot entry?")
+                _("Are you sure you want to remove this EFI boot entry?"))
         dialog.set_modal(self.window)
-        name_string = "%s: %s" % ("Name", name)
-        number_string ="%s: %s" % ("Number", number)
+        name_string = "%s: %s" % (_("Name"), name)
+        number_string ="%s: %s" % (_("Boot Number"), number)
         dialog.format_secondary_text("%s\n%s" % (name_string, number_string))
         response = dialog.run()
+        p = 0
         if response == Gtk.ResponseType.YES:
             p = subprocess.call(['efibootmgr', '-B', '-b', number])
         dialog.destroy()
         self.update_list()
         if p != 0:
-            msg = "Could not delete boot entry"
+            msg = _("Could not delete boot entry")
             dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK, msg)
             dialog.set_modal(self.window)
@@ -208,14 +218,14 @@ class GUEFI:
     def on_button_add_ok_clicked(self, widget):
         new_name = self.entry_add_name.get_text()
         if not self.new_loader:
-            msg = "No EFI loader has been selected"
+            msg = _("No EFI loader has been selected")
             dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK, msg)
             dialog.set_modal(self.dialog_add)
             dialog.run()
             dialog.destroy()
         elif not efi_name_test(new_name):
-            msg = "Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. "
+            msg1 = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
             dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK, msg)
             dialog.set_modal(self.dialog_add)
@@ -224,7 +234,7 @@ class GUEFI:
         else:
             p = self.uefi.create_entry(new_name, self.new_loader)
             if p != 0:
-                msg = "Something went wrong. Could not create new boot entry"
+                msg = _("Something went wrong. Could not create new boot entry")
                 dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
                                     Gtk.ButtonsType.OK, msg)
                 dialog.set_modal(self.dialog_add)
@@ -251,12 +261,12 @@ class GUEFI:
             self.new_loader = path+basename
         else:
             # show an error message that warns about the EFI loader location
-            msg = "The EFI loader you have selected is not located inside the EFI partition"
+            msg = _("The EFI loader you have selected is not located inside the EFI partition")
             dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK, msg)
             dialog.set_modal(self.dialog_add)
             dialog.run()
-            self.entry_loader_path.set_text('**%s**' % 'ERROR')
+            self.entry_loader_path.set_text('**%s**' % _("ERROR"))
             self.new_loader = None
             dialog.destroy()
 
