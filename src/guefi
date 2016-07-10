@@ -71,8 +71,9 @@ class UEFI:
         self.entries_list.append(entry)
 
     def create_entry(self, name, loader=None):
+        new_loader = loader.replace('/', '\\')
         if loader:
-            cmd = ['efibootmgr', '-c', '-d', self.efi_hd, '-l', loader,
+            cmd = ['efibootmgr', '-c', '-d', self.efi_hd, '-l', new_loader,
                     '-p', self.efi_partition, '-L', name]
         else:
             cmd = ['efibootmgr', '-c', '-d', self.efi_hd,
