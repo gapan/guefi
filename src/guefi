@@ -163,9 +163,6 @@ class GUEFI:
     def on_button_add_clicked(self, widget):
         self.dialog_add.show()
 
-    def on_button_edit_clicked(self, widget):
-        pass
-
     def on_button_remove_clicked(self, widget):
         selectedline = self.treeview_entries.get_selection()
         self.liststore_entries, iter = selectedline.get_selected()
