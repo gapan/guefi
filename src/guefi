@@ -21,7 +21,7 @@ _ = gettext.gettext
 
 def efi_name_test(name):
     '''Tests if name is a valid one for an EFI boot entry.'''
-    if len(name) == 0:
+    if len(name.replace(' ', '')) == 0:
         return False
     allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.,:;()/ "
     return all(c in allowed for c in name)
