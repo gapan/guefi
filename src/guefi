@@ -161,6 +161,12 @@ class GUEFI:
         Gtk.main_quit()
 
     def on_button_add_clicked(self, widget):
+        self.entry_add_name.set_text('')
+        self.entry_loader_path.set_text('')
+        self.filechooserbutton_loader.set_current_folder(self.uefi.efi_mountpoint)
+        filename = self.filechooserbutton_loader.get_filename()
+        if filename:
+            self.filechooserbutton_loader.unselect_filename(filename)
         self.dialog_add.show()
 
     def on_button_remove_clicked(self, widget):
