@@ -228,7 +228,7 @@ class GUEFI:
             dialog.run()
             dialog.destroy()
         elif not efi_name_test(new_name):
-            msg1 = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
+            msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
             dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK, msg)
             dialog.set_modal(self.dialog_add)
