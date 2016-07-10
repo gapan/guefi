@@ -204,7 +204,13 @@ class GUEFI:
     def on_button_move_down_clicked(self, widget):
         pass
 
-    def apply_boot_order(self):
+    def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
+        pass
+
+    def on_cellrenderertoggle_enabled_toggled(self, widget, data=None):
+        pass
+
+    def on_treeview_entries_drag_end(self, widget, data=None):
         boot_order = []
         for i in self.liststore_entries:
             boot_order.append(i[1])
@@ -217,15 +223,6 @@ class GUEFI:
             dialog.set_modal(self.window)
             dialog.run()
             dialog.destroy()
-
-    def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
-        pass
-
-    def on_cellrenderertoggle_enabled_toggled(self, widget, data=None):
-        pass
-
-    def on_treeview_entries_drag_end(self, widget, data=None):
-        self.apply_boot_order()
 
     #
     # Add dialog actions
