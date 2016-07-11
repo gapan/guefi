@@ -221,6 +221,9 @@ class GUEFI:
         self.update_timeout()
         self.dialog_timeout.show()
 
+    def on_button_about_clicked(self, widget):
+        self.aboutdialog.show()
+
     # the cellrenderertoggles are ran before the cursos-changed signal for the
     # treeview. This creates a problem where if the code to toggle the checkbox
     # was in here, it would change the one for the entry that was previously
@@ -408,6 +411,16 @@ class GUEFI:
             self.label_timeout_t.set_sensitive(False)
             self.spinbutton_timeout.set_sensitive(False)
 
+    #
+    # About dialog actions
+    #
+    def on_aboutdialog_response(self, widget, data=None):
+        self.aboutdialog.hide()
+
+    def on_aboutdialog_delete_event(self, widget, event):
+        self.aboutdialog.hide()
+        return True
+
     # this updates the boot entries list in the main window
     def update_list(self):
         self.liststore_entries.clear()
@@ -470,6 +483,9 @@ class GUEFI:
         self.label_timeout_t = builder.get_object('label_timeout_t')
         self.spinbutton_timeout = builder.get_object('spinbutton_timeout')
         self.update_timeout()
+
+        # About dialog
+        self.aboutdialog = builder.get_object('aboutdialog')
 
         if not self.uefi.efi_partition:
             msg = _("No UEFI partition detected. Aboring.")
