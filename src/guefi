@@ -126,17 +126,18 @@ class UEFI:
                     if part1.endswith('*'):
                         enabled = True
                         number = part1.partition('*')[0].partition('Boot')[2]
+                        name = part2
                     else:
                         enabled = False
                         number = part1.partition('Boot')[2]
-                    name = part2
+                        name = part2.partition(' ')[2]
                     entry = Entry(number, name, enabled)
                     self.add_entry(entry)
         return retval
 
 class Entry:
 
-    def __init__(self, number, name, loader='\elilo.efi', enabled=True, boot_next=False):
+    def __init__(self, number, name, enabled=True, boot_next=False, loader='\elilo.efi'):
         self.number = number
         self.name = name
         self.enabled = enabled
@@ -428,6 +429,7 @@ class GUEFI:
                 if j.number == n:
                     name = j.name
                     enabled = j.enabled
+                    break
             self.liststore_entries.append([name, n, enabled, boot_next])
 
     def __init__(self):
