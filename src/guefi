@@ -26,6 +26,11 @@ def efi_name_test(name):
     allowed = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.,:;()/ "
     return all(c in allowed for c in name)
 
+class EntryAction:
+    DoNothing = 0
+    ToggleEnable = 1
+    ToggleBootNext = 2
+
 class UEFI:
 
     def __init__(self):
@@ -138,14 +143,29 @@ class Entry:
         self.loader = loader
         self.boot_next = boot_next
 
-
-    def activate(self, number):
-        p = subprocess.Popen(['efibootmgr', '-a', '-b', self.number])
-        return p.returncode
+    def activate(self):
+        p = subprocess.call(['efibootmgr', '-a', '-b', self.number])
+        if p == 0:
+            self.enabled = True
+        return p
 
     def deactivate(self):
-        p = subprocess.Popen(['efibootmgr', '-A', '-b', self.number])
-        return p.returncode
+        p = subprocess.call(['efibootmgr', '-A', '-b', self.number])
+        if p == 0:
+            self.enabled = False
+        return p
+
+    def enable_boot_next(self):
+        p = subprocess.call(['efibootmgr', '-n', self.number])
+        if p == 0:
+            self.enabled = True
+        return p
+
+    def disable_boot_next(self):
+        p = subprocess.call(['efibootmgr', '-N'])
+        if p == 0:
+            self.enabled = False
+        return p
 
     def delete(self):
         p = subprocess.Popen(['efibootmgr', '-B', '-b', self.number])
@@ -196,11 +216,18 @@ class GUEFI:
         except TypeError:
             pass
 
+    # the cellrenderertoggles are ran before the cursos-changed signal for the
+    # treeview. This creates a problem where if the code to toggle the checkbox
+    # was in here, it would change the one for the entry that was previously
+    # selected, not the new/current one! By specifying the action here for both
+    # boot_next and enabled toggles and having the actual code do the work in
+    # on_treeview_entries_cursor_changed further down, we work around this
+    # issue.
     def on_cellrenderertoggle_boot_next_toggled(self, widget, data=None):
-        pass
+        self.entry_action = EntryAction.ToggleBootNext
 
     def on_cellrenderertoggle_enabled_toggled(self, widget, data=None):
-        pass
+        self.entry_action = EntryAction.ToggleEnable
 
     def on_treeview_entries_drag_end(self, widget, data=None):
         boot_order = []
@@ -215,6 +242,63 @@ class GUEFI:
             dialog.set_modal(self.window)
             dialog.run()
             dialog.destroy()
+
+    def get_current_selection(self):
+        selectedline = self.treeview_entries.get_selection()
+        self.liststore_entries, iter = selectedline.get_selected()
+        name = self.liststore_entries.get_value(iter, 0)
+        number = self.liststore_entries.get_value(iter, 1)
+        return name, number
+
+    def on_treeview_entries_cursor_changed(self, widget, data=None):
+        selectedline = self.treeview_entries.get_selection()
+        self.liststore_entries, iter = selectedline.get_selected()
+        name = self.liststore_entries.get_value(iter, 0)
+        number = self.liststore_entries.get_value(iter, 1)
+        # self.entry_action is set when running the
+        # on_cellrenderertoggle_boot_next_toggled or
+        # on_cellrenderertoggle_enabled_toggled functions, which are ran before
+        # the cursor-changed signal is emited
+        if self.entry_action == EntryAction.ToggleBootNext:
+            self.toggle_boot_next(number)
+        elif self.entry_action == EntryAction.ToggleEnable:
+            self.toggle_enable(number)
+        self.entry_action = EntryAction.DoNothing
+
+    def toggle_boot_next(self, number):
+            for i in self.uefi.entries_list:
+                if i.number == number:
+                    selectedline = self.treeview_entries.get_selection()
+                    self.liststore_entries, iter = selectedline.get_selected()
+                    boot_next = self.liststore_entries.get_value(iter, 3)
+                    if boot_next:
+                        p = i.disable_boot_next()
+                        if p == 0:
+                            self.liststore_entries.set_value(iter, 3, False)
+                    else:
+                        p = i.enable_boot_next()
+                        if p == 0:
+                            for j in self.liststore_entries:
+                                j[3] = False
+                            self.liststore_entries.set_value(iter, 3, True)
+                    break
+
+    def toggle_enable(self, number):
+            for i in self.uefi.entries_list:
+                if i.number == number:
+                    selectedline = self.treeview_entries.get_selection()
+                    self.liststore_entries, iter = selectedline.get_selected()
+                    enabled = self.liststore_entries.get_value(iter, 2)
+                    if enabled:
+                        p = i.deactivate()
+                        if p == 0:
+                            self.liststore_entries.set_value(iter, 2, False)
+                    else:
+                        p = i.activate()
+                        if p == 0:
+                            self.liststore_entries.set_value(iter, 2, True)
+                    break
+
 
     #
     # Add dialog actions
@@ -298,6 +382,7 @@ class GUEFI:
 
     def __init__(self):
         self.uefi = UEFI()
+        self.entry_action = EntryAction()
 
         # this is going to be used to store the path to the EFI loader when
         # the Add and Edit buttons are pressed
@@ -314,6 +399,7 @@ class GUEFI:
         self.treeview_entries = builder.get_object('treeview_entries')
         self.treeviewcolumn_boot_number = builder.get_object('treeviewcolumn_boot_number')
         self.treeviewcolumn_boot_number.set_visible(False)
+        self.treeviewcolumn_boot_next = builder.get_object('treeviewcolumn_boot_next')
         self.liststore_entries = builder.get_object('liststore_entries')
         self.update_list()
 
