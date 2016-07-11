@@ -986,7 +986,7 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.
 </property>
-    <property name="authors">George Vlahavas &lt;vlahavas~at~gmail~dot~com&gt;</property>
+    <property name="authors">George Vlahavas (vlahavas~at~gmail~dot~com)</property>
     <property name="translator_credits" translatable="yes">translator-credits</property>
     <property name="logo_icon_name">guefi</property>
     <signal name="delete-event" handler="on_aboutdialog_delete_event" swapped="no"/>
