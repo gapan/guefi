@@ -470,10 +470,20 @@ class GUEFI:
         self.update_timeout()
 
         if not self.uefi.efi_partition:
-            print('No UEFI partition detected. Aborting.')
+            msg = _("No UEFI partition detected. Aboring.")
+            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.dialog_add)
+            dialog.run()
+            dialog.destroy()
             sys.exit(1)
         if not self.uefi.efi_mountpoint:
-            print('UEFI parition is not mounted. Aborting.')
+            msg = _("UEFI partition is not mounted. Aborting.")
+            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.dialog_add)
+            dialog.run()
+            dialog.destroy()
             sys.exit(1)
 
         builder.connect_signals(self)
