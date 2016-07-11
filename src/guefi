@@ -92,19 +92,19 @@ class UEFI:
                 break
 
     def set_timeout(self, timeout):
-        p = subprocess.Popen(['efibootmgr', '-t', timeout])
-        return p.returncode
+        p = subprocess.call(['efibootmgr', '-t', str(timeout)])
+        return p
 
     def delete_timeout(self):
-        p = subprocess.Popen(['efibootmgr', '-T'])
-        return p.returncode
+        p = subprocess.call(['efibootmgr', '-T'])
+        return p
 
     def update(self):
         self.entries_list = []
         self.boot_order = []
         self.boot_current = None
         self.boot_next = None
-        self.timeout = 0
+        self.timeout = None
         self.efi_mountpoint = self.get_efi_mountpoint()
         p = subprocess.Popen('efibootmgr', stdout=subprocess.PIPE)
         output = p.communicate()[0].splitlines()
@@ -121,7 +121,7 @@ class UEFI:
                     for i in part2.split(','):
                         self.boot_order.append(i)
                 elif part1.startswith('Timeout:'):
-                    self.timeout = part2.partition(' sec')[0]
+                    self.timeout = int(part2.partition(' sec')[0])
                 elif part1.startswith('Boot'):
                     if part1.endswith('*'):
                         enabled = True
@@ -215,6 +215,10 @@ class GUEFI:
                 dialog.destroy()
         except TypeError:
             pass
+
+    def on_button_timeout_clicked(self, widget):
+        self.update_timeout()
+        self.dialog_timeout.show()
 
     # the cellrenderertoggles are ran before the cursos-changed signal for the
     # treeview. This creates a problem where if the code to toggle the checkbox
@@ -357,6 +361,52 @@ class GUEFI:
             self.new_loader = None
             dialog.destroy()
 
+    #
+    # Timeout dialog actions
+    #
+    def on_button_timeout_ok_clicked(self, widget):
+        enabled = self.checkbutton_timeout.get_active()
+        if enabled:
+            timeout = self.spinbutton_timeout.get_value()
+            if timeout != self.uefi.timeout:
+                p = self.uefi.set_timeout(timeout)
+                if p == 0:
+                    self.uefi.timeout = timeout
+        else:
+            p = self.uefi.delete_timeout()
+            if p == 0:
+                self.uefi.timeout = None
+        self.update_timeout()
+        self.dialog_timeout.hide()
+
+    def on_button_timeout_cancel_clicked(self, widget):
+        self.dialog_timeout.hide()
+
+    def update_timeout(self):
+        label_t = _("Timeout (s)")
+        if not self.uefi.timeout:
+            label = "%s: %s" % (label_t, _("Disabled"))
+            self.checkbutton_timeout.set_active(False)
+            self.label_timeout_t.set_sensitive(False)
+            self.spinbutton_timeout.set_sensitive(False)
+            self.spinbutton_timeout.set_value(0)
+        else:
+            label = "%s: %d" % (label_t, self.uefi.timeout)
+            self.checkbutton_timeout.set_active(True)
+            self.label_timeout_t.set_sensitive(True)
+            self.spinbutton_timeout.set_sensitive(True)
+            self.spinbutton_timeout.set_value(self.uefi.timeout)
+        self.label_timeout.set_text(label)
+
+    def on_checkbutton_timeout_toggled(self, widget):
+        enabled = self.checkbutton_timeout.get_active()
+        if enabled:
+            self.label_timeout_t.set_sensitive(True)
+            self.spinbutton_timeout.set_sensitive(True)
+        else:
+            self.label_timeout_t.set_sensitive(False)
+            self.spinbutton_timeout.set_sensitive(False)
+
     # this updates the boot entries list in the main window
     def update_list(self):
         self.liststore_entries.clear()
@@ -401,6 +451,7 @@ class GUEFI:
         self.treeviewcolumn_boot_number.set_visible(False)
         self.treeviewcolumn_boot_next = builder.get_object('treeviewcolumn_boot_next')
         self.liststore_entries = builder.get_object('liststore_entries')
+        self.label_timeout = builder.get_object('label_timeout')
         self.update_list()
 
         # Add boot entry dialog
@@ -410,6 +461,13 @@ class GUEFI:
         self.filechooserbutton_loader = builder.get_object('filechooserbutton_loader')
         self.filefilter_efi = builder.get_object('filefilter_efi')
         self.filefilter_efi.add_pattern('*.efi')
+
+        # Timeout dialog
+        self.dialog_timeout = builder.get_object('dialog_timeout')
+        self.checkbutton_timeout = builder.get_object('checkbutton_timeout')
+        self.label_timeout_t = builder.get_object('label_timeout_t')
+        self.spinbutton_timeout = builder.get_object('spinbutton_timeout')
+        self.update_timeout()
 
         if not self.uefi.efi_partition:
             print('No UEFI partition detected. Aborting.')
