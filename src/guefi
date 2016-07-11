@@ -504,6 +504,18 @@ class GUEFI:
             dialog.destroy()
             sys.exit(1)
 
+        # it doesn't hurt to reload the efivars module. If it cannot be loaded,
+        # then this is not an UEFI system
+        p = subprocess.call(['modprobe', 'efivars'])
+        if p != 0:
+            msg = _("This does not look like an UEFI system. Aborting.")
+            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.dialog_add)
+            dialog.run()
+            dialog.destroy()
+            sys.exit(1)
+
         builder.connect_signals(self)
 
 if __name__ == "__main__":
