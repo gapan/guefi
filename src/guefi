@@ -99,6 +99,19 @@ class UEFI:
         p = subprocess.call(['efibootmgr', '-T'])
         return p
 
+    def get_loader(self, number):
+        loader = None
+        p = subprocess.Popen(['efibootmgr', '-v'], stdout=subprocess.PIPE)
+        output = p.communicate()[0].splitlines()
+        retval = p.returncode
+        if retval == 0:
+            for line in output:
+                if line.startswith("Boot%s" % number):
+                    if 'File(' in line:
+                        loader = line.partition('File(')[2].partition(')')[0]
+                    break
+        return loader
+
     def update(self):
         self.entries_list = []
         self.boot_order = []
@@ -131,7 +144,8 @@ class UEFI:
                         enabled = False
                         number = part1.partition('Boot')[2]
                         name = part2.partition(' ')[2]
-                    entry = Entry(number, name, enabled)
+                    loader = self.get_loader(number)
+                    entry = Entry(number, name, enabled=enabled, loader=loader)
                     self.add_entry(entry)
         return retval
 
