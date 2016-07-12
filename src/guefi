@@ -273,19 +273,20 @@ class GUEFI:
         return name, number
 
     def on_treeview_entries_cursor_changed(self, widget, data=None):
-        selectedline = self.treeview_entries.get_selection()
-        self.liststore_entries, iter = selectedline.get_selected()
-        name = self.liststore_entries.get_value(iter, 0)
-        number = self.liststore_entries.get_value(iter, 1)
-        # self.entry_action is set when running the
-        # on_cellrenderertoggle_boot_next_toggled or
-        # on_cellrenderertoggle_enabled_toggled functions, which are ran before
-        # the cursor-changed signal is emited
-        if self.entry_action == EntryAction.ToggleBootNext:
-            self.toggle_boot_next(number)
-        elif self.entry_action == EntryAction.ToggleEnable:
-            self.toggle_enable(number)
-        self.entry_action = EntryAction.DoNothing
+        if self.entry_action != EntryAction.DoNothing:
+            selectedline = self.treeview_entries.get_selection()
+            self.liststore_entries, iter = selectedline.get_selected()
+            name = self.liststore_entries.get_value(iter, 0)
+            number = self.liststore_entries.get_value(iter, 1)
+            # self.entry_action is set when running the
+            # on_cellrenderertoggle_boot_next_toggled or
+            # on_cellrenderertoggle_enabled_toggled functions, which are ran before
+            # the cursor-changed signal is emited
+            if self.entry_action == EntryAction.ToggleBootNext:
+                self.toggle_boot_next(number)
+            elif self.entry_action == EntryAction.ToggleEnable:
+                self.toggle_enable(number)
+            self.entry_action = EntryAction.DoNothing
 
     def toggle_boot_next(self, number):
             for i in self.uefi.entries_list:
