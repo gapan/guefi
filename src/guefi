@@ -432,6 +432,13 @@ class GUEFI:
             dialog.run()
             self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
             dialog.destroy()
+        elif not efi_name_test(new_name):
+            msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
+            dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.dialog_edit)
+            dialog.run()
+            dialog.destroy()
         else:
             # store the current position in the boot order, so we can later put
             # the new entry at the same position
