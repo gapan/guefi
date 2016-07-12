@@ -355,7 +355,7 @@ class GUEFI:
         self.new_loader = None
         self.dialog_add.hide()
 
-    # this runs whenever a new file is selected through the filechooser dialog
+    # this runs whenever a new file is selected through the "Add" dialog
     def on_filechooserbutton_loader_file_set(self, widget):
         filename = self.filechooserbutton_loader.get_filename()
         basename = os.path.basename(filename)
