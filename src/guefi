@@ -206,10 +206,10 @@ class GUEFI:
 
     def on_button_remove_clicked(self, widget):
         try:
-            selectedline = self.treeview_entries.get_selection()
-            self.liststore_entries, iter = selectedline.get_selected()
-            name = self.liststore_entries.get_value(iter, 0)
-            number = self.liststore_entries.get_value(iter, 1)
+            name, number = self.get_current_selection()
+        except TypeError:
+            pass
+        else:
             dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
                     Gtk.ButtonsType.YES_NO,
                     _("Are you sure you want to remove this EFI boot entry?"))
@@ -228,8 +228,6 @@ class GUEFI:
                 dialog.set_modal(self.window)
                 dialog.run()
                 dialog.destroy()
-        except TypeError:
-            pass
 
     def on_button_timeout_clicked(self, widget):
         self.update_timeout()
@@ -274,10 +272,7 @@ class GUEFI:
 
     def on_treeview_entries_cursor_changed(self, widget, data=None):
         if self.entry_action != EntryAction.DoNothing:
-            selectedline = self.treeview_entries.get_selection()
-            self.liststore_entries, iter = selectedline.get_selected()
-            name = self.liststore_entries.get_value(iter, 0)
-            number = self.liststore_entries.get_value(iter, 1)
+            name, number = self.get_current_selection()
             # self.entry_action is set when running the
             # on_cellrenderertoggle_boot_next_toggled or
             # on_cellrenderertoggle_enabled_toggled functions, which are ran before
