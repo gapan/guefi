@@ -358,11 +358,18 @@ class GUEFI:
     # this runs whenever a new file is selected through the "Add" dialog
     def on_filechooserbutton_loader_file_set(self, widget):
         filename = self.filechooserbutton_loader.get_filename()
-        basename = os.path.basename(filename)
-        if filename.startswith(self.uefi.efi_mountpoint):
-            path = filename.partition(self.uefi.efi_mountpoint)[2].partition(basename)[0]
-            self.entry_loader_path.set_text(path)
-            self.new_loader = path+basename
+        self.new_loader = self.get_loader_from_filename(filename)
+        if not self.new_loader:
+            # show an error message that warns about the EFI loader location
+            msg = _("The EFI loader you have selected is not located inside the EFI partition")
+            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.dialog_add)
+            dialog.run()
+            self.entry_loader_path.set_text('**%s**' % _("ERROR"))
+            self.new_loader = None
+            dialog.destroy()
+
         else:
             # show an error message that warns about the EFI loader location
             msg = _("The EFI loader you have selected is not located inside the EFI partition")
@@ -373,6 +380,18 @@ class GUEFI:
             self.entry_loader_path.set_text('**%s**' % _("ERROR"))
             self.new_loader = None
             dialog.destroy()
+
+    # this is used by both the Add and Edit dialogs and returns the new loader
+    # from the filename that is chosen using the filechoosers
+    def get_loader_from_filename(self, filename):
+        basename = os.path.basename(filename)
+        if filename.startswith(self.uefi.efi_mountpoint):
+            path = filename.partition(self.uefi.efi_mountpoint)[2].partition(basename)[0]
+            self.entry_loader_path.set_text(path)
+            new_loader = path+basename
+            return new_loader
+        else:
+            return None
 
     #
     # Timeout dialog actions
