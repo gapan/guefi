@@ -317,7 +317,6 @@ class GUEFI:
                             self.liststore_entries.set_value(iter, 2, True)
                     break
 
-
     #
     # Add dialog actions
     #
