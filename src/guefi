@@ -112,6 +112,9 @@ class UEFI:
                     break
         return loader
 
+    def set_boot_order(self, order):
+        return subprocess.call(['efibootmgr', '-o', ','.join(order)])
+
     def update(self):
         self.entries_list = []
         self.boot_order = []
@@ -204,6 +207,41 @@ class GUEFI:
             self.filechooserbutton_loader.unselect_filename(filename)
         self.dialog_add.show()
 
+    def on_button_edit_clicked(self, widget):
+        try:
+            name, number = self.get_current_selection()
+        except TypeError:
+            pass
+        else:
+            loader = None
+            loader_efi_path = None
+            loader_mounted_path = None
+            loader_basename = None
+            for i in self.uefi.entries_list:
+                if i.number == number and i.loader:
+                    loader = i.loader.replace('\\', '/')
+                    break
+            if loader:
+                loader_basename = os.path.basename(loader)
+                loader_dir = "%s/" % os.path.dirname(loader)
+                loader_efi_path = loader.partition(loader_basename)[0]
+                loader_mounted_path = "%s%s" % (self.uefi.efi_mountpoint,
+                        loader_efi_path)
+                loader_full_path = "%s/%s" % (loader_mounted_path,
+                        loader_basename)
+                self.entry_edit_loader_path.set_text(loader_dir)
+                self.filechooserbutton_edit_loader.select_filename(loader_full_path)
+                self.entry_edit_name.set_text(name)
+                self.boot_number_to_edit = number
+                self.dialog_edit.show()
+            else:
+                msg = _("This UEFI boot entry cannot be edited")
+                dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.INFO,
+                                    Gtk.ButtonsType.OK, msg)
+                dialog.set_modal(self.window)
+                dialog.run()
+                dialog.destroy()
+
     def on_button_remove_clicked(self, widget):
         try:
             name, number = self.get_current_selection()
@@ -253,8 +291,7 @@ class GUEFI:
         boot_order = []
         for i in self.liststore_entries:
             boot_order.append(i[1])
-        cmd = ['efibootmgr', '-o', ','.join(boot_order)]
-        p = subprocess.call(cmd)
+        p = self.uefi.set_boot_order(boot_order)
         if p != 0:
             msg = _("Could not set boot order")
             dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
@@ -370,14 +407,108 @@ class GUEFI:
             self.new_loader = None
             dialog.destroy()
 
+
+    #
+    # Edit dialog actions
+    #
+    def on_button_edit_ok_clicked(self, widget):
+        # efibootmgr does not actually allow for editing an existing entry.
+        # One has to create a new entry and delete the old one. This makes
+        # "editing" a lot more complicated that it should have been.
+        number = self.boot_number_to_edit
+        for i in self.uefi.entries_list:
+            if i.number == number:
+                old_name = i.name
+                old_loader = i.loader.replace('\\', '/')
+        new_name = self.entry_edit_name.get_text()
+        filename = self.filechooserbutton_edit_loader.get_filename()
+        self.new_loader = self.get_loader_from_filename(filename)
+        if not self.new_loader:
+            # show an error message that warns about the EFI loader location
+            msg = _("The EFI loader you have selected is not located inside the EFI partition")
+            dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
+                                Gtk.ButtonsType.OK, msg)
+            dialog.set_modal(self.dialog_edit)
+            dialog.run()
+            self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
+            dialog.destroy()
         else:
+            # store the current position in the boot order, so we can later put
+            # the new entry at the same position
+            boot_order = self.uefi.boot_order
+            if old_name == new_name and old_loader == self.new_loader:
+                pass
+            else:
+                p = self.uefi.create_entry(new_name, loader = self.new_loader)
+                if p != 0:
+                    msg = _("Something went wrong. Adding new boot entry failed")
+                    dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
+                                        Gtk.ButtonsType.OK, msg)
+                    dialog.set_modal(self.dialog_edit)
+                    dialog.run()
+                    dialog.destroy()
+                else:
+                    # OK, the new boot entry has been succesfully created. Time to
+                    # delete the old one now
+                    # Let's update the UEFI info first. The first item in the new
+                    # boot order is our new entry.
+                    u = self.uefi.update()
+                    if u != 0:
+                        msg = _("Something went wrong. Could not update UEFI information")
+                        dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
+                                            Gtk.ButtonsType.OK, msg)
+                        dialog.set_modal(self.dialog_edit)
+                        dialog.run()
+                        dialog.destroy()
+                    else:
+                        # time to delete the old entry
+                        d = subprocess.call(['efibootmgr', '-B', '-b', number])
+                        if d != 0:
+                            msg = _("Something went wrong. Deleting old boot entry failed")
+                            dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
+                                                Gtk.ButtonsType.OK, msg)
+                            dialog.set_modal(self.dialog_edit)
+                            dialog.run()
+                            dialog.destroy()
+                        else:
+                            # OK, the old boot entry has now been deleted. Now
+                            # rearrange the boot order to be the same as it was
+                            # before adding the new entry and deleting the old one
+                            new_number = self.uefi.boot_order[0]
+                            boot_order[boot_order.index(number)] = new_number
+                            o = self.uefi.set_boot_order(boot_order)
+                            if o != 0:
+                                msg = _("Something went wrong. Could not rearrange boot order")
+                                dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
+                                                    Gtk.ButtonsType.OK, msg)
+                                dialog.set_modal(self.dialog_edit)
+                                dialog.run()
+                                dialog.destroy()
+                            else:
+                                # Done! Finally!
+                                # Let's update the main window list and clean up
+                                self.update_list()
+                                self.boot_number_to_edit = None
+                                self.new_loader = None
+                                self.dialog_edit.hide()
+
+    def on_button_edit_cancel_clicked(self, widget):
+        self.boot_number_to_edit = None
+        self.new_loader = None
+        self.dialog_edit.hide()
+
+    # this runs whenever a new file is selected through the "Edit" dialog
+    def on_filechooserbutton_edit_loader_file_set(self, widget):
+        filename = self.filechooserbutton_edit_loader.get_filename()
+        self.new_loader = self.get_loader_from_filename(filename)
+        if not self.new_loader:
             # show an error message that warns about the EFI loader location
             msg = _("The EFI loader you have selected is not located inside the EFI partition")
             dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
                                 Gtk.ButtonsType.OK, msg)
             dialog.set_modal(self.dialog_add)
             dialog.run()
-            self.entry_loader_path.set_text('**%s**' % _("ERROR"))
+            self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
             self.new_loader = None
             dialog.destroy()
 
@@ -480,6 +611,8 @@ class GUEFI:
         # this is going to be used to store the path to the EFI loader when
         # the Add and Edit buttons are pressed
         self.new_loader = None
+        # and this for storing the BootNum that is going to be edited
+        self.boot_number_to_edit = None
 
         builder = Gtk.Builder()
         if os.path.exists('guefi.ui'):
@@ -502,6 +635,15 @@ class GUEFI:
         self.entry_add_name = builder.get_object('entry_add_name')
         self.entry_loader_path = builder.get_object('entry_loader_path')
         self.filechooserbutton_loader = builder.get_object('filechooserbutton_loader')
+
+        # Edit boot entry dialog
+        self.dialog_edit = builder.get_object('dialog_edit')
+        self.entry_edit_name = builder.get_object('entry_edit_name')
+        self.label_edit_loader_path = builder.get_object('label_edit_loader_path')
+        self.entry_edit_loader_path = builder.get_object('entry_edit_loader_path')
+        self.filechooserbutton_edit_loader = builder.get_object('filechooserbutton_edit_loader')
+
+        # This is used for both the Add and Edit dialog filechoosers
         self.filefilter_efi = builder.get_object('filefilter_efi')
         self.filefilter_efi.add_pattern('*.efi')
 
