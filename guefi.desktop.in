@@ -1,0 +1,11 @@
+[Desktop Entry]
+_Name=GUEFI Boot Manager
+_Comment=A graphical frontend to efibootmgr
+Exec=gksu guefi
+Icon=guefi
+Terminal=false
+Type=Application
+Categories=Application;System;;
+StartupNotify=true
+Encoding=UTF-8
+NotShowIn=KDE
