@@ -369,7 +369,7 @@ class GUEFI:
         else:
             p = self.uefi.create_entry(new_name, self.new_loader)
             if p != 0:
-                msg = "%s %s" % (_("Something went wrong"),
+                msg = "%s %s" % (_("Something went wrong."),
                         _("Could not create new boot entry."))
                 self.show_dialog(msg, parent = self.dialog_add)
             else:
