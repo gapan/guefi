@@ -1,0 +1,15 @@
+Installation
+------------
+
+To install, just run:
+
+ make
+
+followed by:
+
+ make install
+
+as root. You can set DESTDIR to change the installation target:
+
+ make install DESTDIR=/my/custom/installation/target
+
