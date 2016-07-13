@@ -510,6 +510,9 @@ class GUEFI:
             self.show_dialog(msg, parent = self.dialog_add)
             self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
             self.new_loader = None
+        else:
+            new_path = "%s/" % os.path.dirname(self.new_loader)
+            self.entry_edit_loader_path.set_text(new_path)
 
     # this is used by both the Add and Edit dialogs and returns the new loader
     # from the filename that is chosen using the filechoosers
