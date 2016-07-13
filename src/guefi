@@ -550,9 +550,9 @@ class GUEFI:
         self.dialog_timeout.hide()
 
     def update_timeout(self):
-        label_t = _("Timeout (s)")
+        label_t = _("Timeout (s):")
         if not self.uefi.timeout:
-            label = "%s: %s" % (label_t, _("Disabled"))
+            label = "%s %s" % (label_t, _("Disabled"))
             self.checkbutton_timeout.set_active(False)
             self.label_timeout_t.set_sensitive(False)
             self.spinbutton_timeout.set_sensitive(False)
