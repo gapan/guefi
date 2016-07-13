@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-14 01:25+0300\n"
+"POT-Creation-Date: 2016-07-14 01:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Enable timeout"
 msgstr ""
 
-#: src/guefi.ui:1472
+#: src/guefi.ui:1472 src/guefi:553
 msgid "Timeout (s):"
 msgstr ""
 
@@ -142,10 +142,6 @@ msgstr ""
 
 #: src/guefi:490
 msgid "Could not set BootNext attribute."
-msgstr ""
-
-#: src/guefi:553
-msgid "Timeout (s)"
 msgstr ""
 
 #: src/guefi:555
