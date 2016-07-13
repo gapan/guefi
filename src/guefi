@@ -186,8 +186,8 @@ class Entry:
         return p
 
     def delete(self):
-        p = subprocess.Popen(['efibootmgr', '-B', '-b', self.number])
-        return p.returncode
+        p = subprocess.call(['efibootmgr', '-B', '-b', self.number])
+        return p
 
 
 class GUEFI:
