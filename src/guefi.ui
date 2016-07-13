@@ -323,7 +323,7 @@
     <property name="copyright">Copyright © 2016 George Vlahavas</property>
     <property name="comments" translatable="yes">A GTK+3 frontend for efibootmgr</property>
     <property name="website">https://github.com/gapan/guefi</property>
-    <property name="website_label" translatable="yes">https://github.com/gapan/guefi</property>
+    <property name="website_label">https://github.com/gapan/guefi</property>
     <property name="license">                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
