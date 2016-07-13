@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-13 23:05+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/guefi.ui:62
+msgid "Boot Order"
+msgstr ""
+
+#: src/guefi.ui:87
+msgid "Enabled"
+msgstr ""
+
+#: src/guefi.ui:102
+msgid "Boot This Next"
+msgstr ""
+
+#: src/guefi.ui:204
+msgid "Change"
+msgstr ""
+
+#: src/guefi.ui:270
+msgid "You can rearrange the boot order by dragging entries"
+msgstr ""
+
+#: src/guefi.ui:324
+msgid "A GTK+3 frontend for efibootmgr"
+msgstr ""
+
+#: src/guefi.ui:1003
+msgid "translator-credits"
+msgstr ""
+
+#: src/guefi.ui:1030
+msgid "Add A Boot Entry"
+msgstr ""
+
+#: src/guefi.ui:1099 src/guefi.ui:1277
+msgid "Name:"
+msgstr ""
+
+#: src/guefi.ui:1111 src/guefi.ui:1289
+msgid "Provide a name for the new boot entry. "
+msgstr ""
+
+#: src/guefi.ui:1142 src/guefi.ui:1321
+msgid "Loader path:"
+msgstr ""
+
+#: src/guefi.ui:1208
+msgid "Edit A Boot Entry"
+msgstr ""
+
+#: src/guefi.ui:1388
+msgid "Change Timeout"
+msgstr ""
+
+#: src/guefi.ui:1450
+msgid "Enable timeout"
+msgstr ""
+
+#: src/guefi.ui:1472
+msgid "Timeout (s):"
+msgstr ""
+
+#: src/guefi:243
+msgid "This UEFI boot entry cannot be edited"
+msgstr ""
+
+#: src/guefi:255
+msgid "Are you sure you want to remove this EFI boot entry?"
+msgstr ""
+
+#: src/guefi:265
+msgid "Could not delete boot entry"
+msgstr ""
+
+#: src/guefi:294
+msgid "Could not set boot order"
+msgstr ""
+
+#: src/guefi:363
+msgid "No EFI loader has been selected"
+msgstr ""
+
+#: src/guefi:366 src/guefi:424
+msgid ""
+"Invalid name. Allowed characters are the space character and the following:"
+msgstr ""
+
+#: src/guefi:372
+msgid "Something went wrong"
+msgstr ""
+
+#: src/guefi:373
+msgid "Could not create new boot entry."
+msgstr ""
+
+#: src/guefi:390 src/guefi:419 src/guefi:511
+msgid ""
+"The EFI loader you have selected is not located inside the EFI partition"
+msgstr ""
+
+#: src/guefi:392 src/guefi:421 src/guefi:513
+msgid "ERROR"
+msgstr ""
+
+#: src/guefi:435 src/guefi:450 src/guefi:458 src/guefi:470 src/guefi:480
+#: src/guefi:489
+msgid "Something went wrong."
+msgstr ""
+
+#: src/guefi:436
+msgid "Adding new boot entry failed."
+msgstr ""
+
+#: src/guefi:451
+msgid "Could not update UEFI information."
+msgstr ""
+
+#: src/guefi:459
+msgid "Deleting old boot entry failed."
+msgstr ""
+
+#: src/guefi:471
+msgid "Could not rearrange boot order"
+msgstr ""
+
+#: src/guefi:481
+msgid "Could not disable boot entry."
+msgstr ""
+
+#: src/guefi:490
+msgid "Could not set BootNext attribute."
+msgstr ""
+
+#: src/guefi:553
+msgid "Timeout (s)"
+msgstr ""
+
+#: src/guefi:555
+msgid "Disabled"
+msgstr ""
+
+#: src/guefi:673
+msgid "No UEFI partition detected. Aborting."
+msgstr ""
+
+#: src/guefi:677
+msgid "UEFI partition is not mounted. Aborting."
+msgstr ""
+
+#: src/guefi:685
+msgid "This does not look like an UEFI system. Aborting."
+msgstr ""
+
+#: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
+msgid "GUEFI Boot Manager"
+msgstr ""
+
+#: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
+msgid "A graphical frontend to efibootmgr"
+msgstr ""
