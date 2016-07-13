@@ -668,7 +668,7 @@ class GUEFI:
         self.aboutdialog = builder.get_object('aboutdialog')
 
         if not self.uefi.efi_partition:
-            msg = _("No UEFI partition detected. Aboring.")
+            msg = _("No UEFI partition detected. Aborting.")
             self.show_dialog(msg, parent = self.window)
             sys.exit(1)
         if not self.uefi.efi_mountpoint:
