@@ -363,7 +363,8 @@ class GUEFI:
             msg = _("No EFI loader has been selected")
             self.show_dialog(msg, parent = self.dialog_add)
         elif not efi_name_test(new_name):
-            msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
+            msg = "%s %s" % (_("Invalid name. Allowed characters are the space character and the following:"),
+                    "A-Z a-z 0-9 .,:;-_()/")
             self.show_dialog(msg, parent = self.dialog_add)
         else:
             p = self.uefi.create_entry(new_name, self.new_loader)
