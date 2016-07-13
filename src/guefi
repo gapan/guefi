@@ -176,13 +176,13 @@ class Entry:
     def enable_boot_next(self):
         p = subprocess.call(['efibootmgr', '-n', self.number])
         if p == 0:
-            self.enabled = True
+            self.boot_next = True
         return p
 
     def disable_boot_next(self):
         p = subprocess.call(['efibootmgr', '-N'])
         if p == 0:
-            self.enabled = False
+            self.boot_next = False
         return p
 
     def delete(self):
