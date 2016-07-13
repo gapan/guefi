@@ -421,7 +421,8 @@ class GUEFI:
             self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
         elif not efi_name_test(new_name):
             error = True
-            msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
+            msg = "%s %s" % (_("Invalid name. Allowed characters are the space character and the following:"),
+                    "A-Z a-z 0-9 .,:;-_()/")
             self.show_dialog(msg, parent = self.dialog_edit)
         if not error:
             # store the current position in the boot order, so we can later put
