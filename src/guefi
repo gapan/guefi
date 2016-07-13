@@ -236,11 +236,8 @@ class GUEFI:
                 self.dialog_edit.show()
             else:
                 msg = _("This UEFI boot entry cannot be edited")
-                dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.INFO,
-                                    Gtk.ButtonsType.OK, msg)
-                dialog.set_modal(self.window)
-                dialog.run()
-                dialog.destroy()
+                self.show_info_dialog(msg, parent = self.window,
+                        dialog_type = Gtk.MessageType.INFO)
 
     def on_button_remove_clicked(self, widget):
         try:
