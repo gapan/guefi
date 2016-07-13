@@ -147,8 +147,14 @@ class UEFI:
                         enabled = False
                         number = part1.partition('Boot')[2]
                         name = part2.partition(' ')[2]
+                    if number == self.boot_next:
+                        boot_next = True
+                    else:
+                        boot_next = False
                     loader = self.get_loader(number)
-                    entry = Entry(number, name, enabled=enabled, loader=loader)
+                    print(number, name, enabled, boot_next)
+                    entry = Entry(number, name, enabled=enabled,
+                            boot_next = boot_next, loader=loader)
                     self.add_entry(entry)
         return retval
 
@@ -324,6 +330,8 @@ class GUEFI:
                         if p == 0:
                             self.liststore_entries.set_value(iter, 3, False)
                     else:
+                        for j in self.uefi.entries_list:
+                            j.boot_next = False
                         p = i.enable_boot_next()
                         if p == 0:
                             for j in self.liststore_entries:
@@ -391,64 +399,97 @@ class GUEFI:
         # One has to create a new entry and delete the old one. This makes
         # "editing" a lot more complicated that it should have been.
         number = self.boot_number_to_edit
+        # switch this to True if something happens. Helps avoiding arrowhead
+        # code.
+        error = False
+        done = False
         for i in self.uefi.entries_list:
             if i.number == number:
                 old_name = i.name
                 old_loader = i.loader.replace('\\', '/')
+                enabled = i.enabled
+                boot_next = i.boot_next
+                print('* Enabled:',enabled)
+                print('* BootNext:',boot_next)
         new_name = self.entry_edit_name.get_text()
         filename = self.filechooserbutton_edit_loader.get_filename()
         self.new_loader = self.get_loader_from_filename(filename)
         if not self.new_loader:
             # show an error message that warns about the EFI loader location
+            error = True
             msg = _("The EFI loader you have selected is not located inside the EFI partition")
             self.show_dialog(msg, parent = self.dialog_edit)
             self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
         elif not efi_name_test(new_name):
+            error = True
             msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
             self.show_dialog(msg, parent = self.dialog_edit)
-        else:
+        if not error:
             # store the current position in the boot order, so we can later put
             # the new entry at the same position
             boot_order = self.uefi.boot_order
-            if old_name == new_name and old_loader == self.new_loader:
-                pass
-            else:
+            if old_name != new_name or old_loader != self.new_loader:
                 p = self.uefi.create_entry(new_name, loader = self.new_loader)
                 if p != 0:
+                    error = True
                     msg = _("Something went wrong. Adding new boot entry failed")
                     self.show_dialog(msg, parent = self.dialog_edit)
-                else:
-                    # OK, the new boot entry has been succesfully created. Time to
-                    # delete the old one now
-                    # Let's update the UEFI info first. The first item in the new
-                    # boot order is our new entry.
-                    u = self.uefi.update()
-                    if u != 0:
-                        msg = _("Something went wrong. Could not update UEFI information")
-                        self.show_dialog(msg, parent = self.dialog_edit)
-                    else:
-                        # time to delete the old entry
-                        d = subprocess.call(['efibootmgr', '-B', '-b', number])
-                        if d != 0:
-                            msg = _("Something went wrong. Deleting old boot entry failed")
-                            self.show_dialog(msg, parent = self.dialog_edit)
-                        else:
-                            # OK, the old boot entry has now been deleted. Now
-                            # rearrange the boot order to be the same as it was
-                            # before adding the new entry and deleting the old one
-                            new_number = self.uefi.boot_order[0]
-                            boot_order[boot_order.index(number)] = new_number
-                            o = self.uefi.set_boot_order(boot_order)
-                            if o != 0:
-                                msg = _("Something went wrong. Could not rearrange boot order")
-                                self.show_dialog(msg, parent = self.dialog_edit)
-                            else:
-                                # Done! Finally!
-                                # Let's update the main window list and clean up
-                                self.update_list()
-                                self.boot_number_to_edit = None
-                                self.new_loader = None
-                                self.dialog_edit.hide()
+            else:
+                # Both label and loader have not changed, so nothing else to do
+                # here.
+                done = True
+        if not error and not done:
+            # OK, the new boot entry has been succesfully created. Time to
+            # delete the old one now
+            # Let's update the UEFI info first. The first item in the new
+            # boot order is our new entry.
+            p = self.uefi.update()
+            if p != 0:
+                error = True
+                msg = _("Something went wrong. Could not update UEFI information")
+                self.show_dialog(msg, parent = self.dialog_edit)
+        if not error and not done:
+            # time to delete the old entry
+            p = subprocess.call(['efibootmgr', '-B', '-b', number])
+            if p != 0:
+                error = True
+                msg = _("Something went wrong. Deleting old boot entry failed")
+                self.show_dialog(msg, parent = self.dialog_edit)
+        if not error and not done:
+            # OK, the old boot entry has now been deleted. Now
+            # rearrange the boot order to be the same as it was
+            # before adding the new entry and deleting the old one
+            new_number = self.uefi.boot_order[0]
+            boot_order[boot_order.index(number)] = new_number
+            p = self.uefi.set_boot_order(boot_order)
+            if p != 0:
+                error = True
+                msg = _("Something went wrong. Could not rearrange boot order")
+                self.show_dialog(msg, parent = self.dialog_edit)
+        if not error and not done and not enabled:
+            # if the previous entry is disabled, so should be the new one.
+            # Default for a new entry is to be enabled, so we don't have to
+            # explicitly enabled it.
+            p = subprocess.call(['efibootmgr', '-A', '-b', new_number])
+            if p != 0:
+                error = True
+                msg = _("Something went wrong. Could not disable boot entry")
+                self.show_dialog(msg, parent = self.dialog_edit)
+        if not error and not done and boot_next:
+            # if the previous entry is set as BootNext, so should be the new
+            # one. Default for a new entry is to be disabled.
+            p = subprocess.call(['efibootmgr', '-n', new_number])
+            if p != 0:
+                error = True
+                msg = _("Something went wrong. Could not set BootNext attribute")
+                self.show_dialog(msg, parent = self.dialog_edit)
+        if not error:
+            # Done! Finally!
+            # Let's update the main window list and clean up
+            self.update_list()
+            self.boot_number_to_edit = None
+            self.new_loader = None
+            self.dialog_edit.hide()
 
     def on_button_edit_cancel_clicked(self, widget):
         self.boot_number_to_edit = None
