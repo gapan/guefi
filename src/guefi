@@ -152,7 +152,6 @@ class UEFI:
                     else:
                         boot_next = False
                     loader = self.get_loader(number)
-                    print(number, name, enabled, boot_next)
                     entry = Entry(number, name, enabled=enabled,
                             boot_next = boot_next, loader=loader)
                     self.add_entry(entry)
@@ -409,8 +408,6 @@ class GUEFI:
                 old_loader = i.loader.replace('\\', '/')
                 enabled = i.enabled
                 boot_next = i.boot_next
-                print('* Enabled:',enabled)
-                print('* BootNext:',boot_next)
         new_name = self.entry_edit_name.get_text()
         filename = self.filechooserbutton_edit_loader.get_filename()
         self.new_loader = self.get_loader_from_filename(filename)
