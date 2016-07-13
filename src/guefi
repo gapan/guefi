@@ -368,7 +368,8 @@ class GUEFI:
         else:
             p = self.uefi.create_entry(new_name, self.new_loader)
             if p != 0:
-                msg = _("Something went wrong. Could not create new boot entry")
+                msg = "%s %s" % (_("Something went wrong"),
+                        _("Could not create new boot entry."))
                 self.show_dialog(msg, parent = self.dialog_add)
             else:
                 self.update_list()
@@ -429,7 +430,8 @@ class GUEFI:
                 p = self.uefi.create_entry(new_name, loader = self.new_loader)
                 if p != 0:
                     error = True
-                    msg = _("Something went wrong. Adding new boot entry failed")
+                    msg = "%s %s" % (_("Something went wrong."),
+                        _("Adding new boot entry failed."))
                     self.show_dialog(msg, parent = self.dialog_edit)
             else:
                 # Both label and loader have not changed, so nothing else to do
@@ -443,14 +445,16 @@ class GUEFI:
             p = self.uefi.update()
             if p != 0:
                 error = True
-                msg = _("Something went wrong. Could not update UEFI information")
+                msg = "%s %s" % (_("Something went wrong."),
+                    _("Could not update UEFI information."))
                 self.show_dialog(msg, parent = self.dialog_edit)
         if not error and not done:
             # time to delete the old entry
             p = subprocess.call(['efibootmgr', '-B', '-b', number])
             if p != 0:
                 error = True
-                msg = _("Something went wrong. Deleting old boot entry failed")
+                msg = "%s %s" % (_("Something went wrong."),
+                    _("Deleting old boot entry failed."))
                 self.show_dialog(msg, parent = self.dialog_edit)
         if not error and not done:
             # OK, the old boot entry has now been deleted. Now
@@ -461,7 +465,8 @@ class GUEFI:
             p = self.uefi.set_boot_order(boot_order)
             if p != 0:
                 error = True
-                msg = _("Something went wrong. Could not rearrange boot order")
+                msg = "%s %s" % (_("Something went wrong."),
+                    _("Could not rearrange boot order"))
                 self.show_dialog(msg, parent = self.dialog_edit)
         if not error and not done and not enabled:
             # if the previous entry is disabled, so should be the new one.
@@ -470,7 +475,8 @@ class GUEFI:
             p = subprocess.call(['efibootmgr', '-A', '-b', new_number])
             if p != 0:
                 error = True
-                msg = _("Something went wrong. Could not disable boot entry")
+                msg = "%s %s" % (_("Something went wrong."),
+                    _("Could not disable boot entry."))
                 self.show_dialog(msg, parent = self.dialog_edit)
         if not error and not done and boot_next:
             # if the previous entry is set as BootNext, so should be the new
@@ -478,7 +484,8 @@ class GUEFI:
             p = subprocess.call(['efibootmgr', '-n', new_number])
             if p != 0:
                 error = True
-                msg = _("Something went wrong. Could not set BootNext attribute")
+                msg = "%s %s" % (_("Something went wrong."),
+                    _("Could not set BootNext attribute."))
                 self.show_dialog(msg, parent = self.dialog_edit)
         if not error:
             # Done! Finally!
