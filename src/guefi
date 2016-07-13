@@ -261,11 +261,7 @@ class GUEFI:
             self.update_list()
             if p != 0:
                 msg = _("Could not delete boot entry")
-                dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
-                                    Gtk.ButtonsType.OK, msg)
-                dialog.set_modal(self.window)
-                dialog.run()
-                dialog.destroy()
+                self.show_info_dialog(msg, parent = self.window)
 
     def on_button_timeout_clicked(self, widget):
         self.update_timeout()
@@ -294,11 +290,7 @@ class GUEFI:
         p = self.uefi.set_boot_order(boot_order)
         if p != 0:
             msg = _("Could not set boot order")
-            dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.window)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.window)
 
     def get_current_selection(self):
         selectedline = self.treeview_entries.get_selection()
@@ -361,27 +353,15 @@ class GUEFI:
         new_name = self.entry_add_name.get_text()
         if not self.new_loader:
             msg = _("No EFI loader has been selected")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.dialog_add)
         elif not efi_name_test(new_name):
             msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.dialog_add)
         else:
             p = self.uefi.create_entry(new_name, self.new_loader)
             if p != 0:
                 msg = _("Something went wrong. Could not create new boot entry")
-                dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                    Gtk.ButtonsType.OK, msg)
-                dialog.set_modal(self.dialog_add)
-                dialog.run()
-                dialog.destroy()
+                self.show_info_dialog(msg, parent = self.dialog_add)
             else:
                 self.update_list()
                 self.dialog_add.hide()
@@ -399,14 +379,9 @@ class GUEFI:
         if not self.new_loader:
             # show an error message that warns about the EFI loader location
             msg = _("The EFI loader you have selected is not located inside the EFI partition")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
+            self.show_info_dialog(msg, parent = self.dialog_add)
             self.entry_loader_path.set_text('**%s**' % _("ERROR"))
             self.new_loader = None
-            dialog.destroy()
-
 
     #
     # Edit dialog actions
@@ -426,19 +401,11 @@ class GUEFI:
         if not self.new_loader:
             # show an error message that warns about the EFI loader location
             msg = _("The EFI loader you have selected is not located inside the EFI partition")
-            dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_edit)
-            dialog.run()
+            self.show_info_dialog(msg, parent = self.dialog_edit)
             self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
-            dialog.destroy()
         elif not efi_name_test(new_name):
             msg = _("Invalid name. Only these characters are allowed: A-Z a-z 0-9 .,:;-()/ and space. ")
-            dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_edit)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.dialog_edit)
         else:
             # store the current position in the boot order, so we can later put
             # the new entry at the same position
@@ -449,11 +416,7 @@ class GUEFI:
                 p = self.uefi.create_entry(new_name, loader = self.new_loader)
                 if p != 0:
                     msg = _("Something went wrong. Adding new boot entry failed")
-                    dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
-                                        Gtk.ButtonsType.OK, msg)
-                    dialog.set_modal(self.dialog_edit)
-                    dialog.run()
-                    dialog.destroy()
+                    self.show_info_dialog(msg, parent = self.dialog_edit)
                 else:
                     # OK, the new boot entry has been succesfully created. Time to
                     # delete the old one now
@@ -462,21 +425,13 @@ class GUEFI:
                     u = self.uefi.update()
                     if u != 0:
                         msg = _("Something went wrong. Could not update UEFI information")
-                        dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
-                                            Gtk.ButtonsType.OK, msg)
-                        dialog.set_modal(self.dialog_edit)
-                        dialog.run()
-                        dialog.destroy()
+                        self.show_info_dialog(msg, parent = self.dialog_edit)
                     else:
                         # time to delete the old entry
                         d = subprocess.call(['efibootmgr', '-B', '-b', number])
                         if d != 0:
                             msg = _("Something went wrong. Deleting old boot entry failed")
-                            dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
-                                                Gtk.ButtonsType.OK, msg)
-                            dialog.set_modal(self.dialog_edit)
-                            dialog.run()
-                            dialog.destroy()
+                            self.show_info_dialog(msg, parent = self.dialog_edit)
                         else:
                             # OK, the old boot entry has now been deleted. Now
                             # rearrange the boot order to be the same as it was
@@ -486,11 +441,7 @@ class GUEFI:
                             o = self.uefi.set_boot_order(boot_order)
                             if o != 0:
                                 msg = _("Something went wrong. Could not rearrange boot order")
-                                dialog = Gtk.MessageDialog(self.dialog_edit, 0, Gtk.MessageType.ERROR,
-                                                    Gtk.ButtonsType.OK, msg)
-                                dialog.set_modal(self.dialog_edit)
-                                dialog.run()
-                                dialog.destroy()
+                                self.show_info_dialog(msg, parent = self.dialog_edit)
                             else:
                                 # Done! Finally!
                                 # Let's update the main window list and clean up
@@ -511,13 +462,9 @@ class GUEFI:
         if not self.new_loader:
             # show an error message that warns about the EFI loader location
             msg = _("The EFI loader you have selected is not located inside the EFI partition")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
+            self.show_info_dialog(msg, parent = self.dialog_add)
             self.entry_edit_loader_path.set_text('**%s**' % _("ERROR"))
             self.new_loader = None
-            dialog.destroy()
 
     # this is used by both the Add and Edit dialogs and returns the new loader
     # from the filename that is chosen using the filechoosers
@@ -611,6 +558,13 @@ class GUEFI:
                     break
             self.liststore_entries.append([name, n, enabled, boot_next])
 
+    def show_info_dialog(self, message, parent=None, dialog_type=Gtk.Message.ERROR):
+        dialog = Gtk.MessageDialog(parent, 0, dialog_type,
+                            Gtk.ButtonsType.OK, message)
+        dialog.set_modal(parent)
+        dialog.run()
+        dialog.destroy()
+
     def __init__(self):
         self.uefi = UEFI()
         self.entry_action = EntryAction()
@@ -666,19 +620,11 @@ class GUEFI:
 
         if not self.uefi.efi_partition:
             msg = _("No UEFI partition detected. Aboring.")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.window)
             sys.exit(1)
         if not self.uefi.efi_mountpoint:
             msg = _("UEFI partition is not mounted. Aborting.")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.window)
             sys.exit(1)
 
         # it doesn't hurt to reload the efivars module. If it cannot be loaded,
@@ -686,11 +632,7 @@ class GUEFI:
         p = subprocess.call(['modprobe', 'efivars'])
         if p != 0:
             msg = _("This does not look like an UEFI system. Aborting.")
-            dialog = Gtk.MessageDialog(self.dialog_add, 0, Gtk.MessageType.ERROR,
-                                Gtk.ButtonsType.OK, msg)
-            dialog.set_modal(self.dialog_add)
-            dialog.run()
-            dialog.destroy()
+            self.show_info_dialog(msg, parent = self.window)
             sys.exit(1)
 
         builder.connect_signals(self)
