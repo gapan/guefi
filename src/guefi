@@ -288,6 +288,10 @@ class GUEFI:
         if p != 0:
             msg = _("Could not set boot order")
             self.show_dialog(msg, parent = self.window)
+        else:
+            # since setting the boot order was successful, also update the
+            # internal list that holds it
+            self.uefi.boot_order = boot_order
 
     def get_current_selection(self):
         selectedline = self.treeview_entries.get_selection()
