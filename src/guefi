@@ -555,7 +555,8 @@ class GUEFI:
                     break
             self.liststore_entries.append([name, n, enabled, boot_next])
 
-    def show_info_dialog(self, message, parent=None, dialog_type=Gtk.Message.ERROR):
+    def show_info_dialog(self, message, parent = None,
+            dialog_type = Gtk.MessageType.ERROR):
         dialog = Gtk.MessageDialog(parent, 0, dialog_type,
                             Gtk.ButtonsType.OK, message)
         dialog.set_modal(parent)
