@@ -630,7 +630,7 @@ class GUEFI:
         if os.path.exists('guefi.ui'):
             builder.add_from_file('guefi.ui')
         elif os.path.exists('/usr/share/guefi/guefi.ui'):
-            builder.add_from_file('/usr/share/guefi/guefi-gtk.ui')
+            builder.add_from_file('/usr/share/guefi/guefi.ui')
         
         # Main window
         self.window = builder.get_object('guefi')
