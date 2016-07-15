@@ -40,7 +40,7 @@ msgstr "Ви можете змінювати порядок завантажен
 
 #: src/guefi.ui:324
 msgid "A GTK+3 frontend for efibootmgr"
-msgstr "Написана на GTK+3 надбудова для efibootmgr"
+msgstr "GTK+3 інтерфейс для efibootmgr"
 
 #: src/guefi.ui:1003
 msgid "translator-credits"
@@ -88,34 +88,34 @@ msgstr "Ви впевнені, що бажаєте вилучити цей пу�
 
 #: src/guefi:265
 msgid "Could not delete boot entry"
-msgstr ""
+msgstr "Неможливо вилучити пункт завантаження"
 
 #: src/guefi:294
 msgid "Could not set boot order"
-msgstr ""
+msgstr "Неможливо встановити порядок завантаження"
 
 #: src/guefi:363
 msgid "No EFI loader has been selected"
-msgstr ""
+msgstr "Не вибрано завантажувач EFI"
 
 #: src/guefi:366 src/guefi:424
 msgid ""
 "Invalid name. Allowed characters are the space character and the following:"
-msgstr ""
+msgstr "Неправильна назва. Дозволеними символами є пропуск і наступні:"
 
 #: src/guefi:372 src/guefi:435 src/guefi:450 src/guefi:458 src/guefi:470
 #: src/guefi:480 src/guefi:489
 msgid "Something went wrong."
-msgstr ""
+msgstr "Щось пішло не так."
 
 #: src/guefi:373
 msgid "Could not create new boot entry."
-msgstr ""
+msgstr "Неможливо створити новий пункт завантаження."
 
 #: src/guefi:390 src/guefi:419 src/guefi:511
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
-msgstr ""
+msgstr "Вибраний завантажувач EFI не міститься на розділі EFI"
 
 #: src/guefi:392 src/guefi:421 src/guefi:513
 msgid "ERROR"
@@ -123,27 +123,27 @@ msgstr "ПОМИЛКА"
 
 #: src/guefi:436
 msgid "Adding new boot entry failed."
-msgstr ""
+msgstr "Не вдалося додати новий пункт завантаження."
 
 #: src/guefi:451
 msgid "Could not update UEFI information."
-msgstr ""
+msgstr "Неможливо оновити інформацію UEFI."
 
 #: src/guefi:459
 msgid "Deleting old boot entry failed."
-msgstr ""
+msgstr "Вилучення старого пункту завантаження не вдалося."
 
 #: src/guefi:471
 msgid "Could not rearrange boot order"
-msgstr ""
+msgstr "Неможливо поміняти порядок завантаження"
 
 #: src/guefi:481
 msgid "Could not disable boot entry."
-msgstr ""
+msgstr "Неможливо виключити пункт завантаження."
 
 #: src/guefi:490
 msgid "Could not set BootNext attribute."
-msgstr ""
+msgstr "Неможливо встановити атрибут BootNext."
 
 #: src/guefi:555
 msgid "Disabled"
@@ -151,20 +151,20 @@ msgstr "Виключено"
 
 #: src/guefi:673
 msgid "No UEFI partition detected. Aborting."
-msgstr ""
+msgstr "Жодного розділу UEFI не вибрано. Припинення."
 
 #: src/guefi:677
 msgid "UEFI partition is not mounted. Aborting."
-msgstr ""
+msgstr "Розділ UEFI не змонтований. Припинення."
 
 #: src/guefi:685
 msgid "This does not look like an UEFI system. Aborting."
-msgstr ""
+msgstr "Не виглядає, що це система UEFI. Припинення."
 
 #: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
 msgid "GUEFI Boot Manager"
-msgstr ""
+msgstr "Менеджер завантаження GUEFI"
 
 #: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
 msgid "A graphical frontend to efibootmgr"
-msgstr ""
+msgstr "Графічний інтерфейс до efibootmgr"

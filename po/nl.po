@@ -68,54 +68,57 @@ msgstr "Wijzig een Boot Optie"
 
 #: src/guefi.ui:1388
 msgid "Change Timeout"
-msgstr ""
+msgstr "Wijzig Wachttijd"
 
 #: src/guefi.ui:1450
 msgid "Enable timeout"
-msgstr ""
+msgstr "Schakel wachttijd in"
 
 #: src/guefi.ui:1472 src/guefi:553
 msgid "Timeout (s):"
-msgstr ""
+msgstr "Wachttijd (s):"
 
 #: src/guefi:243
 msgid "This UEFI boot entry cannot be edited"
-msgstr ""
+msgstr "Deze UEFI boot optie kan niet worden gewijzigd"
 
 #: src/guefi:255
 msgid "Are you sure you want to remove this EFI boot entry?"
-msgstr ""
+msgstr "Bent u zeker dat u deze EFI boot optie wilt verwijderen?"
 
 #: src/guefi:265
 msgid "Could not delete boot entry"
-msgstr ""
+msgstr "Kan boot optie niet verwijderen"
 
 #: src/guefi:294
 msgid "Could not set boot order"
-msgstr ""
+msgstr "Kan opstart volgorde niet instellen"
 
 #: src/guefi:363
 msgid "No EFI loader has been selected"
-msgstr ""
+msgstr "Geen EFI lader geselecteerd"
 
 #: src/guefi:366 src/guefi:424
 msgid ""
 "Invalid name. Allowed characters are the space character and the following:"
 msgstr ""
+"Ongeldige naam. Toegestane karakters zijn de spatie en de volgende "
+"karakters:"
 
 #: src/guefi:372 src/guefi:435 src/guefi:450 src/guefi:458 src/guefi:470
 #: src/guefi:480 src/guefi:489
 msgid "Something went wrong."
-msgstr ""
+msgstr "Er is iets fout gegaan."
 
 #: src/guefi:373
 msgid "Could not create new boot entry."
-msgstr ""
+msgstr "Kan boot optie niet creëren."
 
 #: src/guefi:390 src/guefi:419 src/guefi:511
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
 msgstr ""
+"De EFI lader welke u heeft gekozen is niet aanwezig binnen de EFI partitie"
 
 #: src/guefi:392 src/guefi:421 src/guefi:513
 msgid "ERROR"
@@ -123,27 +126,27 @@ msgstr "FOUTMELDING"
 
 #: src/guefi:436
 msgid "Adding new boot entry failed."
-msgstr ""
+msgstr "Toevoegen nieuwe boot optie mislukt."
 
 #: src/guefi:451
 msgid "Could not update UEFI information."
-msgstr ""
+msgstr "Kan UEFI informatie niet verversen."
 
 #: src/guefi:459
 msgid "Deleting old boot entry failed."
-msgstr ""
+msgstr "Verwijderen oude boot optie mislukt."
 
 #: src/guefi:471
 msgid "Could not rearrange boot order"
-msgstr ""
+msgstr "Kan opstart volgorde niet herschikken"
 
 #: src/guefi:481
 msgid "Could not disable boot entry."
-msgstr ""
+msgstr "Kan boot optie niet uitschakelen."
 
 #: src/guefi:490
 msgid "Could not set BootNext attribute."
-msgstr ""
+msgstr "Kan BootNext attribuut niet instellen"
 
 #: src/guefi:555
 msgid "Disabled"
@@ -151,20 +154,20 @@ msgstr "Uitgeschakeld"
 
 #: src/guefi:673
 msgid "No UEFI partition detected. Aborting."
-msgstr ""
+msgstr "Geen UEFI partitie gevonden. Afbreken."
 
 #: src/guefi:677
 msgid "UEFI partition is not mounted. Aborting."
-msgstr ""
+msgstr "UEFI partitie is niet gemount. Afbreken."
 
 #: src/guefi:685
 msgid "This does not look like an UEFI system. Aborting."
-msgstr ""
+msgstr "Dit lijkt niet op een UEFI systeem. Afbreken."
 
 #: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
 msgid "GUEFI Boot Manager"
-msgstr ""
+msgstr "GUEFI Boot Manager"
 
 #: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
 msgid "A graphical frontend to efibootmgr"
-msgstr ""
+msgstr "Een grafische schil voor efibootmgr"
