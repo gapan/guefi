@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-14 01:29+0300\n"
+"POT-Creation-Date: 2016-07-15 17:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,11 +53,11 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
-#: src/guefi.ui:1111 src/guefi.ui:1289
+#: src/guefi.ui:1111
 msgid "Provide a name for the new boot entry. "
 msgstr ""
 
-#: src/guefi.ui:1142 src/guefi.ui:1321
+#: src/guefi.ui:1142 src/guefi.ui:1320
 msgid "Loader path:"
 msgstr ""
 
@@ -65,15 +65,15 @@ msgstr ""
 msgid "Edit A Boot Entry"
 msgstr ""
 
-#: src/guefi.ui:1388
+#: src/guefi.ui:1387
 msgid "Change Timeout"
 msgstr ""
 
-#: src/guefi.ui:1450
+#: src/guefi.ui:1449
 msgid "Enable timeout"
 msgstr ""
 
-#: src/guefi.ui:1472 src/guefi:553
+#: src/guefi.ui:1471 src/guefi:553
 msgid "Timeout (s):"
 msgstr ""
 
