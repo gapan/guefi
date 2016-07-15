@@ -558,7 +558,7 @@ class GUEFI:
             self.spinbutton_timeout.set_sensitive(False)
             self.spinbutton_timeout.set_value(0)
         else:
-            label = "%s: %d" % (label_t, self.uefi.timeout)
+            label = "%s %d" % (label_t, self.uefi.timeout)
             self.checkbutton_timeout.set_active(True)
             self.label_timeout_t.set_sensitive(True)
             self.spinbutton_timeout.set_sensitive(True)
