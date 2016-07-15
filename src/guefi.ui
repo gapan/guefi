@@ -1286,7 +1286,6 @@ Public License instead of this License.  But first, please read
                   <object class="GtkEntry" id="entry_edit_name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Provide a name for the new boot entry. </property>
                     <property name="invisible_char">●</property>
                     <property name="activates_default">True</property>
                     <property name="invisible_char_set">True</property>
