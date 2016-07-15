@@ -46,5 +46,5 @@ TRANSLATIONS
 The GUEFI interface fully supports localization. If you want to
 translate it to a new language, or edit/fix something in an existing
 translation, you can do that using Transifex and the respective
-[GUEFI resource)(https://www.transifex.com/gapan/salix/guefi/).
+[GUEFI resource](https://www.transifex.com/gapan/salix/guefi/).
 
