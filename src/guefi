@@ -627,6 +627,7 @@ class GUEFI:
         self.boot_number_to_edit = None
 
         builder = Gtk.Builder()
+        builder.set_translation_domain('guefi')
         if os.path.exists('guefi.ui'):
             builder.add_from_file('guefi.ui')
         elif os.path.exists('/usr/share/guefi/guefi.ui'):
