@@ -14,6 +14,20 @@ Using GUEFI you can:
 * Configure a UEFI boot entry to be the default during the next boot
 only
 
+
+Editing a boot entry
+--------------------
+
+Since efibootmgr does not really provide means for editing an existing
+UEFI boot entry, what GUEFI actually does is a two step process that
+involves creating a new boot entry, making sure all attributes of the
+original boot entry that haven't been changed by the user are copied over,
+deleting the original boot entry and then making sure the new boot entry
+is placed in the same position as the original one was. That means that
+the actual BootNum of the new boot entry is not the same as the original
+one. It's kind of a hackjob, but it works.
+
+
 REQUIREMENTS
 ============
 
