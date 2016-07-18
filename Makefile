@@ -88,15 +88,15 @@ install-mo:
 .PHONY: tx-pull
 tx-pull:
 	tx pull -a
-	@for i in `ls po/*.po`; do \
-		msgfmt --statistics $$i 2>&1 | grep "^0 translated" > /dev/null \
-			&& rm $$i || true; \
-	done
-	@rm -f messages.mo
+	make delete-empty-po
 
 .PHONY: tx-pull-f
 tx-pull-f:
 	tx pull -a -f
+	make delete-empty-po
+
+.PHONY: delete-empty-po
+delete-empty-po:
 	@for i in `ls po/*.po`; do \
 		msgfmt --statistics $$i 2>&1 | grep "^0 translated" > /dev/null \
 			&& rm $$i || true; \
