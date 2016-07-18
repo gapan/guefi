@@ -88,12 +88,18 @@ install-mo:
 .PHONY: tx-pull
 tx-pull:
 	tx pull -a
+	make fix-charset
 	make delete-empty-po
 
 .PHONY: tx-pull-f
 tx-pull-f:
 	tx pull -a -f
+	make fix-charset
 	make delete-empty-po
+
+.PHONY: fix-charset
+fix-charset:
+	sed -i "s/charset=CHARSET/charset=UTF-8/" po/*.po
 
 .PHONY: delete-empty-po
 delete-empty-po:
