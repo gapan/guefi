@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/guefi.ui:62
 msgid "Boot Order"
-msgstr ""
+msgstr "Orden de Arranque"
 
 #: src/guefi.ui:87
 msgid "Enabled"
@@ -28,94 +28,97 @@ msgstr "Habilitado"
 
 #: src/guefi.ui:102
 msgid "Boot This Next"
-msgstr ""
+msgstr "Arrancar éste luego"
 
 #: src/guefi.ui:204
 msgid "Change"
-msgstr ""
+msgstr "Cambiar"
 
 #: src/guefi.ui:270
 msgid "You can rearrange the boot order by dragging entries"
-msgstr ""
+msgstr "Puedes reacomodar el orden de arranque desplazando las entradas"
 
 #: src/guefi.ui:324
 msgid "A GTK+3 frontend for efibootmgr"
-msgstr ""
+msgstr "Una interfaz GTK+3 para efibootmgr"
 
 #: src/guefi.ui:1003
 msgid "translator-credits"
-msgstr "Fernando Velo"
+msgstr "Fernando Velo y Alejandro Simón"
 
 #: src/guefi.ui:1030
 msgid "Add A Boot Entry"
-msgstr ""
+msgstr "Agregar una Entrada de Arranque"
 
 #: src/guefi.ui:1099 src/guefi.ui:1277
 msgid "Name:"
-msgstr ""
+msgstr "Nombre:"
 
 #: src/guefi.ui:1111
 msgid "Provide a name for the new boot entry. "
-msgstr ""
+msgstr "Proporcionar un nombre para la nueva entrada de arranque."
 
 #: src/guefi.ui:1142 src/guefi.ui:1320
 msgid "Loader path:"
-msgstr ""
+msgstr "Ruta del cargador:"
 
 #: src/guefi.ui:1208
 msgid "Edit A Boot Entry"
-msgstr ""
+msgstr "Editar una Entrada de Arranque:"
 
 #: src/guefi.ui:1387
 msgid "Change Timeout"
-msgstr ""
+msgstr "Cambiar el tiempo de espera"
 
 #: src/guefi.ui:1449
 msgid "Enable timeout"
-msgstr ""
+msgstr "Habilitar el tiempo de espera"
 
 #: src/guefi.ui:1471 src/guefi:553
 msgid "Timeout (s):"
-msgstr ""
+msgstr "Tiempo de espera (s):"
 
 #: src/guefi:243
 msgid "This UEFI boot entry cannot be edited"
-msgstr ""
+msgstr "Esta entrada de arranque UEFI no puede ser editada"
 
 #: src/guefi:255
 msgid "Are you sure you want to remove this EFI boot entry?"
-msgstr ""
+msgstr "¿Está seguro que desea eliminar esta entrada de arranque EFI?"
 
 #: src/guefi:265
 msgid "Could not delete boot entry"
-msgstr ""
+msgstr "No se ha podido eliminar la entrada de arranque"
 
 #: src/guefi:294
 msgid "Could not set boot order"
-msgstr ""
+msgstr "No se pudo establecer el orden de arranque"
 
 #: src/guefi:363
 msgid "No EFI loader has been selected"
-msgstr ""
+msgstr "No se ha seleccionado un cargador EFI"
 
 #: src/guefi:366 src/guefi:424
 msgid ""
 "Invalid name. Allowed characters are the space character and the following:"
 msgstr ""
+"Nombre inválido. Los caracteres permitidos son el espacio y los siguientes:"
 
 #: src/guefi:372 src/guefi:435 src/guefi:450 src/guefi:458 src/guefi:470
 #: src/guefi:480 src/guefi:489
 msgid "Something went wrong."
-msgstr ""
+msgstr "Algo falló."
 
 #: src/guefi:373
 msgid "Could not create new boot entry."
-msgstr ""
+msgstr "Ne se ha podido crear la entrada de arranque."
 
 #: src/guefi:390 src/guefi:419 src/guefi:511
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
 msgstr ""
+"El cargador EFI que ha seleccionado no se encuentra dentro de la partición "
+"EFI"
 
 #: src/guefi:392 src/guefi:421 src/guefi:513
 msgid "ERROR"
@@ -123,27 +126,27 @@ msgstr "ERROR"
 
 #: src/guefi:436
 msgid "Adding new boot entry failed."
-msgstr ""
+msgstr "Ha fallado el agregado de una nueva entrada de arranque"
 
 #: src/guefi:451
 msgid "Could not update UEFI information."
-msgstr ""
+msgstr "No puede actualizarse la información de UEFI."
 
 #: src/guefi:459
 msgid "Deleting old boot entry failed."
-msgstr ""
+msgstr "Ha fallado el borrado de la antigua entrada de arranque."
 
 #: src/guefi:471
 msgid "Could not rearrange boot order"
-msgstr ""
+msgstr "No se pudo modificar el orden de arranque"
 
 #: src/guefi:481
 msgid "Could not disable boot entry."
-msgstr ""
+msgstr "No se pudo deshabilitar la entrada de arranque."
 
 #: src/guefi:490
 msgid "Could not set BootNext attribute."
-msgstr ""
+msgstr "No se pudo establecer el atributo BootNext"
 
 #: src/guefi:555
 msgid "Disabled"
@@ -151,20 +154,20 @@ msgstr "Deshabilitado"
 
 #: src/guefi:673
 msgid "No UEFI partition detected. Aborting."
-msgstr ""
+msgstr "No se detectaron partciones UEFI. Abortando."
 
 #: src/guefi:677
 msgid "UEFI partition is not mounted. Aborting."
-msgstr ""
+msgstr "La partición UEFI no está montada. Abortando."
 
 #: src/guefi:685
 msgid "This does not look like an UEFI system. Aborting."
-msgstr ""
+msgstr "Éste no parece ser un sistema UEFI. Abortando,"
 
 #: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
 msgid "GUEFI Boot Manager"
-msgstr ""
+msgstr "Gestor de Arranque GUEFI"
 
 #: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
 msgid "A graphical frontend to efibootmgr"
-msgstr ""
+msgstr "Una interfaz gráfica para efibootmgr"
