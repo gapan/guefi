@@ -35,11 +35,9 @@ class UEFI:
 
     def __init__(self):
         efi_partition = self.get_efi_partition()
-        if not efi_partition:
-            print('No UEFI partition detected. Aborting.')
-            sys.exit(1)
-        self.efi_hd, self.efi_partition = efi_partition
-        self.update()
+        if efi_partition:
+            self.efi_hd, self.efi_partition = efi_partition
+            self.update()
 
     def get_efi_partition(self):
         dev_nodes = os.listdir('/dev/')
