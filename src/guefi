@@ -604,7 +604,8 @@ class GUEFI:
                     name = j.name
                     enabled = j.enabled
                     break
-            self.liststore_entries.append([name, n, enabled, boot_next])
+            if name is not None:
+                self.liststore_entries.append([name, n, enabled, boot_next])
 
     def show_dialog(self, message, parent = None,
             dialog_type = Gtk.MessageType.ERROR):
