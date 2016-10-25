@@ -595,6 +595,7 @@ class GUEFI:
                     boot_order.append(i.number)
         # now add everything to the liststore, according to the boot order
         for n in boot_order:
+            name = None
             if n == self.uefi.boot_next:
                 boot_next = True
             else:
