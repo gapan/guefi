@@ -1,7 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 # vim:et:sta:sts=4:sw=4:ts=8:tw=79:
 
-from __future__ import print_function
 import subprocess
 import gi
 gi.require_version('Gtk', '3.0')
@@ -52,8 +51,9 @@ class UEFI:
                     retval = p.returncode
                     if retval == 0:
                         for line in output:
-                            if ' EF00 ' in line:
-                                partition = line.lstrip(' ').partition(' ')[0]
+                            line_str = line.decode()
+                            if ' EF00 ' in line_str:
+                                partition = line_str.lstrip(' ').partition(' ')[0]
                                 return hd,partition
         return None
 
@@ -65,8 +65,9 @@ class UEFI:
         retval = p.returncode
         if retval == 0:
             for line in output:
-                if partition in line:
-                    return line.partition(' ')[0]
+                line_str = line.decode()
+                if partition in line_str:
+                    return line_str.partition(' ')[0]
         else:
             return None
 
@@ -104,9 +105,10 @@ class UEFI:
         retval = p.returncode
         if retval == 0:
             for line in output:
-                if line.startswith("Boot%s" % number):
-                    if 'File(' in line:
-                        loader = line.partition('File(')[2].partition(')')[0]
+                line_str = line.decode()
+                if line_str.startswith("Boot%s" % number):
+                    if 'File(' in line_str:
+                        loader = line_str.partition('File(')[2].partition(')')[0]
                     break
         return loader
 
@@ -125,8 +127,9 @@ class UEFI:
         retval = p.returncode
         if retval == 0:
             for line in output:
-                part1 = line.partition(' ')[0]
-                part2 = line.partition(' ')[2]
+                line_str = line.decode()
+                part1 = line_str.partition(' ')[0]
+                part2 = line_str.partition(' ')[2]
                 if part1.startswith('BootCurrent:'):
                     self.boot_current = part2
                 elif part1.startswith('BootNext:'):
