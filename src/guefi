@@ -144,7 +144,7 @@ class UEFI:
                     if part1.endswith('*'):
                         enabled = True
                         number = part1.partition('*')[0].partition('Boot')[2]
-                        name = part2
+                        name = part2.split('\t')[0]
                     else:
                         enabled = False
                         number = part1.partition('Boot')[2]
