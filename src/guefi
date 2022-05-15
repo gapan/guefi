@@ -79,10 +79,10 @@ class UEFI:
         if loader:
             new_loader = loader.replace('/', '\\')
             cmd = ['efibootmgr', '-c', '-d', self.efi_hd, '-l', new_loader,
-                    '-p', self.efi_partition, '-L', name]
+                    '-p', self.efi_partition_number, '-L', name]
         else:
             cmd = ['efibootmgr', '-c', '-d', self.efi_hd,
-                    '-p', self.efi_partition, '-L', name]
+                    '-p', self.efi_partition_number, '-L', name]
         return subprocess.call(cmd)
 
     def delete_entry(self, number):
