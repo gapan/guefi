@@ -685,7 +685,7 @@ class GUEFI:
 
         # it doesn't hurt to reload the efivars module. If it cannot be loaded,
         # then this is not an UEFI system
-        p = subprocess.call(['modprobe', 'efivars'])
+        p = subprocess.call(['modprobe', 'efivarfs'])
         if p != 0:
             msg = _("This does not look like an UEFI system. Aborting.")
             self.show_dialog(msg, parent = self.window)
