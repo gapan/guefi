@@ -35,38 +35,39 @@ class UEFI:
     def __init__(self):
         efi_partition = self.get_efi_partition()
         if efi_partition:
-            self.efi_hd, self.efi_partition = efi_partition
+            self.efi_hd, self.efi_partition, self.efi_partition_number = efi_partition
             self.update()
 
     def get_efi_partition(self):
-        dev_nodes = os.listdir('/dev/')
-        numbers = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
-        hd = None
-        for i in dev_nodes:
-            if i.startswith('sd'):
-                if not i.endswith(numbers):
-                    hd = '/dev/'+i
-                    p = subprocess.Popen(['gdisk', '-l', hd], stdout=subprocess.PIPE)
-                    output = p.communicate()[0].splitlines()
-                    retval = p.returncode
-                    if retval == 0:
-                        for line in output:
-                            line_str = line.decode()
-                            if ' EF00 ' in line_str:
-                                partition = line_str.lstrip(' ').partition(' ')[0]
-                                return hd,partition
+        p = subprocess.Popen('lsblk -p -l -t -o name,parttype,maj:min,uuid,pkname,pttype,type'.split(' '), stdout=subprocess.PIPE)
+        output = p.communicate()[0].splitlines()
+        retval = p.returncode
+        if retval == 0:
+            for line in output:
+                line_str = line.decode()
+                line_str = ' '.join(line_str.split())
+                try:
+                    partition, os_type, maj_min, uuid, disk, partition_type, dev_type = line_str.split(' ')
+                    if dev_type.lower() == 'part':
+                        if (partition_type.lower() == 'dos' and os_type.lower() == '0xef') or \
+                           (partition_type.lower() == 'gpt' and os_type.lower() == 'c12a7328-f81f-11d2-ba4b-00a0c93ec93b'):
+                            part_number = maj_min.split(':')[1]
+                            return disk, partition, part_number
+                except ValueError:
+                    # raised when dev_type is "disk" because most columns are
+                    # not filled in
+                    pass
         return None
 
     def get_efi_mountpoint(self):
-        partition = "%s%s" % (self.efi_hd, self.efi_partition)
-        p = subprocess.Popen(['findmnt', partition],
+        p = subprocess.Popen(['findmnt', self.efi_partition],
                 stdout=subprocess.PIPE)
         output = p.communicate()[0].splitlines()
         retval = p.returncode
         if retval == 0:
             for line in output:
                 line_str = line.decode()
-                if partition in line_str:
+                if self.efi_partition in line_str:
                     return line_str.partition(' ')[0]
         else:
             return None
