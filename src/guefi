@@ -354,6 +354,9 @@ class GUEFI:
                         p = i.activate()
                         if p == 0:
                             self.liststore_entries.set_value(iter, 2, True)
+                    if p == 16:
+                        msg = _("Cannot set state for this boot entry")
+                        self.show_dialog(msg, parent = self.window)
                     break
 
     #
