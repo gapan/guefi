@@ -252,9 +252,10 @@ class GUEFI:
         except TypeError:
             pass
         else:
-            dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.QUESTION,
-                    Gtk.ButtonsType.YES_NO,
-                    _("Are you sure you want to remove this EFI boot entry?"))
+            dialog = Gtk.MessageDialog(parent = self.window, flags = 0,
+                    message_type = Gtk.MessageType.QUESTION,
+                    buttons = Gtk.ButtonsType.YES_NO,
+                    text = _("Are you sure you want to remove this EFI boot entry?"))
             dialog.set_modal(self.window)
             dialog.format_secondary_text(name)
             response = dialog.run()
