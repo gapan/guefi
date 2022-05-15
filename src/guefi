@@ -614,8 +614,9 @@ class GUEFI:
 
     def show_dialog(self, message, parent = None,
             dialog_type = Gtk.MessageType.ERROR):
-        dialog = Gtk.MessageDialog(parent, 0, dialog_type,
-                            Gtk.ButtonsType.OK, message)
+        dialog = Gtk.MessageDialog(parent = parent, flags = 0,
+                message_type = dialog_type, buttons = Gtk.ButtonsType.OK,
+                text = message)
         dialog.set_modal(parent)
         dialog.run()
         dialog.destroy()
