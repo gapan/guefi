@@ -3,14 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Dimitris Tzemos <dijemos@gmail.com>, 2016
+# gapan <vlahavas@gmail.com>, 2022
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-15 17:44+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dimitris Tzemos <dijemos@gmail.com>, 2016\n"
+"POT-Creation-Date: 2022-05-20 11:26+0300\n"
+"PO-Revision-Date: 2016-07-13 20:13+0000\n"
+"Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
 "Language-Team: Greek (https://www.transifex.com/gapan/teams/47809/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,23 +22,35 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/guefi.ui:62
+#: src/guefi.ui:67
 msgid "Boot Order"
 msgstr "Σειρά Εκκίνησης"
 
-#: src/guefi.ui:87
+#: src/guefi.ui:92
 msgid "Enabled"
 msgstr "Ενεργοποιημένο"
 
-#: src/guefi.ui:102
+#: src/guefi.ui:107
 msgid "Boot This Next"
 msgstr "Επόμενη Εκκίνηση"
 
-#: src/guefi.ui:204
+#: src/guefi.ui:141 src/guefi.ui:392
+msgid "Add"
+msgstr "Προσθήκη"
+
+#: src/guefi.ui:155
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: src/guefi.ui:169
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: src/guefi.ui:207
 msgid "Change"
 msgstr "Αλλαγή"
 
-#: src/guefi.ui:270
+#: src/guefi.ui:275
 msgid "You can rearrange the boot order by dragging entries"
 msgstr "Μπορείτε να αλλάξετε τη σειρά εκκίνησης μετακινώντας τις καταχωρήσεις"
 
@@ -42,125 +58,141 @@ msgstr "Μπορείτε να αλλάξετε τη σειρά εκκίνηση�
 msgid "A GTK+3 frontend for efibootmgr"
 msgstr "Ένα γραφικό περιβάλλον για το efibootmgr σε GTK+3"
 
-#: src/guefi.ui:1003
+#: src/guefi.ui:328
 msgid "translator-credits"
 msgstr "Γιώργος Βλαχάβας (vlahavas~at~gmail~dot~com)"
 
-#: src/guefi.ui:1030
+#: src/guefi.ui:357
 msgid "Add A Boot Entry"
 msgstr "Προσθήκη μιας καταχώρησης εκκίνησης"
 
-#: src/guefi.ui:1099 src/guefi.ui:1277
+#: src/guefi.ui:378 src/guefi.ui:552 src/guefi.ui:725
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: src/guefi.ui:426 src/guefi.ui:600
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: src/guefi.ui:1111
+#: src/guefi.ui:438
 msgid "Provide a name for the new boot entry. "
 msgstr "Δώστε ένα όνομα για την καταχώρηση εκκίνησης"
 
-#: src/guefi.ui:1142 src/guefi.ui:1320
+#: src/guefi.ui:467 src/guefi.ui:640
 msgid "Loader path:"
 msgstr "Διαδρομή εκκινητή"
 
-#: src/guefi.ui:1208
+#: src/guefi.ui:531
 msgid "Edit A Boot Entry"
 msgstr "Επεξεργασία μιας καταχώρησης εκκίνησης"
 
-#: src/guefi.ui:1387
+#: src/guefi.ui:566
+msgid "Apply"
+msgstr "Εφαρμογή"
+
+#: src/guefi.ui:704
 msgid "Change Timeout"
 msgstr "Αλλαγή χρόνου αναμονής"
 
-#: src/guefi.ui:1449
+#: src/guefi.ui:739
+msgid "OK"
+msgstr "ΟΚ"
+
+#: src/guefi.ui:766
 msgid "Enable timeout"
 msgstr "Ενεργοποίηση χρόνου αναμονής"
 
-#: src/guefi.ui:1471 src/guefi:553
+#: src/guefi.ui:788 src/guefi:559
 msgid "Timeout (s):"
 msgstr "Χρόνος αναμονής (s):"
 
-#: src/guefi:243
+#: src/guefi:245
 msgid "This UEFI boot entry cannot be edited"
 msgstr "Δεν μπορεί να γίνει επεξεργασία της καταχώρησης εκκίνησης UEFI"
 
-#: src/guefi:255
+#: src/guefi:258
 msgid "Are you sure you want to remove this EFI boot entry?"
 msgstr ""
 "Είστε σίγουροι ότι θέλετε να αφαιρέσετε αυτή την καταχώρηση εκκίνησης UEFI;"
 
-#: src/guefi:265
+#: src/guefi:268
 msgid "Could not delete boot entry"
 msgstr "Δεν ήταν δυνατό να αφαιρεθεί η καταχώρηση εκκίνησης"
 
-#: src/guefi:294
+#: src/guefi:297
 msgid "Could not set boot order"
 msgstr "Δεν ήταν δυνατό να οριστεί η σειρά εκκίνησης"
 
-#: src/guefi:363
+#: src/guefi:359
+msgid "Cannot set state for this boot entry"
+msgstr "Δεν ήταν δυνατό να αλλάξει η κατάσταση της καταχώρησης"
+
+#: src/guefi:369
 msgid "No EFI loader has been selected"
 msgstr "Δεν έχει επιλεγχθεί κανένας εκκινητής EFI"
 
-#: src/guefi:366 src/guefi:424
+#: src/guefi:372 src/guefi:430
 msgid ""
 "Invalid name. Allowed characters are the space character and the following:"
 msgstr ""
 "Μη έγκυρο όνομα. Οι επιτρεπόμενοι χαρακτήρες είναι ο χαρακτήρας του κενού "
 "και οι ακόλουθοι:"
 
-#: src/guefi:372 src/guefi:435 src/guefi:450 src/guefi:458 src/guefi:470
-#: src/guefi:480 src/guefi:489
+#: src/guefi:378 src/guefi:441 src/guefi:456 src/guefi:464 src/guefi:476
+#: src/guefi:486 src/guefi:495
 msgid "Something went wrong."
 msgstr "Κάτι πήγε στραβά."
 
-#: src/guefi:373
+#: src/guefi:379
 msgid "Could not create new boot entry."
 msgstr "Δεν ήταν δυνατό να δημιουργηθεί μια νέα καταχώρηση εκκίνησης."
 
-#: src/guefi:390 src/guefi:419 src/guefi:511
+#: src/guefi:396 src/guefi:425 src/guefi:517
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
 msgstr "Ο εκκινητής EFI που επιλέξατε δεν βρίσκεται μέσα στην κατάτμηση EFI"
 
-#: src/guefi:392 src/guefi:421 src/guefi:513
+#: src/guefi:398 src/guefi:427 src/guefi:519
 msgid "ERROR"
 msgstr "ΣΦΑΛΜΑ"
 
-#: src/guefi:436
+#: src/guefi:442
 msgid "Adding new boot entry failed."
 msgstr "Η προσθήκη της νέας καταχώρησης εκκίνησης απέτυχε."
 
-#: src/guefi:451
+#: src/guefi:457
 msgid "Could not update UEFI information."
 msgstr "Δεν ήταν δυνατή η ενημέρωση των πληροφοριών UEFI."
 
-#: src/guefi:459
+#: src/guefi:465
 msgid "Deleting old boot entry failed."
 msgstr "Η αφαίρεση της παλιάς καταχώρησης εκκίνησης απέτυχε."
 
-#: src/guefi:471
+#: src/guefi:477
 msgid "Could not rearrange boot order"
 msgstr "Δεν ήταν δυνατή η ενημέρωση της σειράς εκκίνησης"
 
-#: src/guefi:481
+#: src/guefi:487
 msgid "Could not disable boot entry."
 msgstr "Δεν ήταν δυνατή η απενεργοποίηση της καταχώρησης εκκίνησης."
 
-#: src/guefi:490
+#: src/guefi:496
 msgid "Could not set BootNext attribute."
 msgstr "Δεν ήταν δυνατός ο ορισμός του χαρακτηρισμού BootNext."
 
-#: src/guefi:555
+#: src/guefi:561
 msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
-#: src/guefi:673
+#: src/guefi:683
 msgid "No UEFI partition detected. Aborting."
 msgstr "Δεν ανιχνεύθηκε κατάτμηση UEFI. Γίνεται έξοδος."
 
-#: src/guefi:677
+#: src/guefi:687
 msgid "UEFI partition is not mounted. Aborting."
 msgstr "Η κατάτμηση UEFI δεν είναι προσαρτημένη. Γίνεται έξοδος."
 
-#: src/guefi:685
+#: src/guefi:695
 msgid "This does not look like an UEFI system. Aborting."
 msgstr "Αυτό δεν μοιάζει με σύστημα UEFI. Γίνεται έξοδος."
 

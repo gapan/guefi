@@ -4,8 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Serg Bormant <bormant@mail.ru>, 2022
-# gapan <vlahavas@gmail.com>, 2022
+# Caarmi, 2021
 # 
 #, fuzzy
 msgid ""
@@ -14,25 +13,25 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-20 11:26+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
-"Language-Team: Russian (https://www.transifex.com/gapan/teams/47809/ru/)\n"
+"Last-Translator: Caarmi, 2021\n"
+"Language-Team: Interlingue (https://www.transifex.com/gapan/teams/47809/ie/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: ie\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/guefi.ui:67
 msgid "Boot Order"
-msgstr "Порядок загрузки"
+msgstr ""
 
 #: src/guefi.ui:92
 msgid "Enabled"
-msgstr "Включено"
+msgstr ""
 
 #: src/guefi.ui:107
 msgid "Boot This Next"
-msgstr "Загружать следующим"
+msgstr ""
 
 #: src/guefi.ui:141 src/guefi.ui:392
 msgid "Add"
@@ -48,43 +47,43 @@ msgstr ""
 
 #: src/guefi.ui:207
 msgid "Change"
-msgstr "Изменить"
+msgstr "Modificar"
 
 #: src/guefi.ui:275
 msgid "You can rearrange the boot order by dragging entries"
-msgstr "Перетащите записи для изменения порядка загрузки"
+msgstr ""
 
 #: src/guefi.ui:324
 msgid "A GTK+3 frontend for efibootmgr"
-msgstr "Графический интерфейс GTK+3 для efibootmgr"
+msgstr "Un interfacie GTK+3 por efibootmgr"
 
 #: src/guefi.ui:328
 msgid "translator-credits"
-msgstr "translator-credits"
+msgstr "OIS <mistresssilvara@hotmail.com>, 2021"
 
 #: src/guefi.ui:357
 msgid "Add A Boot Entry"
-msgstr "Добавить запись загрузки"
+msgstr ""
 
 #: src/guefi.ui:378 src/guefi.ui:552 src/guefi.ui:725
 msgid "Cancel"
-msgstr "Отмена"
+msgstr ""
 
 #: src/guefi.ui:426 src/guefi.ui:600
 msgid "Name:"
-msgstr "Имя:"
+msgstr "Nómine:"
 
 #: src/guefi.ui:438
 msgid "Provide a name for the new boot entry. "
-msgstr "Укажите имя записи загрузки."
+msgstr ""
 
 #: src/guefi.ui:467 src/guefi.ui:640
 msgid "Loader path:"
-msgstr "Путь загрузчика:"
+msgstr ""
 
 #: src/guefi.ui:531
 msgid "Edit A Boot Entry"
-msgstr "Изменить запись загрузки"
+msgstr ""
 
 #: src/guefi.ui:566
 msgid "Apply"
@@ -92,35 +91,35 @@ msgstr ""
 
 #: src/guefi.ui:704
 msgid "Change Timeout"
-msgstr "Изменить таймаут"
+msgstr ""
 
 #: src/guefi.ui:739
 msgid "OK"
-msgstr "ОК"
+msgstr ""
 
 #: src/guefi.ui:766
 msgid "Enable timeout"
-msgstr "Включить таймаут"
+msgstr ""
 
 #: src/guefi.ui:788 src/guefi:559
 msgid "Timeout (s):"
-msgstr "Таймаут (сек.):"
+msgstr ""
 
 #: src/guefi:245
 msgid "This UEFI boot entry cannot be edited"
-msgstr "Невозможно изменить эту запись загрузки EFI"
+msgstr ""
 
 #: src/guefi:258
 msgid "Are you sure you want to remove this EFI boot entry?"
-msgstr "Желаете удалить эту запись загрузки EFI?"
+msgstr ""
 
 #: src/guefi:268
 msgid "Could not delete boot entry"
-msgstr "Невозможно удалить запись загрузки"
+msgstr ""
 
 #: src/guefi:297
 msgid "Could not set boot order"
-msgstr "Невозможно задать порядок загрузки"
+msgstr ""
 
 #: src/guefi:359
 msgid "Cannot set state for this boot entry"
@@ -128,75 +127,75 @@ msgstr ""
 
 #: src/guefi:369
 msgid "No EFI loader has been selected"
-msgstr "Не выбран загрузчик EFI"
+msgstr ""
 
 #: src/guefi:372 src/guefi:430
 msgid ""
 "Invalid name. Allowed characters are the space character and the following:"
-msgstr "Неверное имя. Допустимы пробел и следующие символы:"
+msgstr ""
 
 #: src/guefi:378 src/guefi:441 src/guefi:456 src/guefi:464 src/guefi:476
 #: src/guefi:486 src/guefi:495
 msgid "Something went wrong."
-msgstr "Что-то пошло не так."
+msgstr ""
 
 #: src/guefi:379
 msgid "Could not create new boot entry."
-msgstr "Невозможно создать запись загрузки."
+msgstr ""
 
 #: src/guefi:396 src/guefi:425 src/guefi:517
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
-msgstr "Выбранный загрузчик не расположен на разделе EFI"
+msgstr ""
 
 #: src/guefi:398 src/guefi:427 src/guefi:519
 msgid "ERROR"
-msgstr "ОШИБКА"
+msgstr "ERRORE"
 
 #: src/guefi:442
 msgid "Adding new boot entry failed."
-msgstr "Сбой добавления записи загрузки."
+msgstr ""
 
 #: src/guefi:457
 msgid "Could not update UEFI information."
-msgstr "Невозможно обновить информацию UEFI."
+msgstr ""
 
 #: src/guefi:465
 msgid "Deleting old boot entry failed."
-msgstr "Сбой удаления записи загрузки."
+msgstr ""
 
 #: src/guefi:477
 msgid "Could not rearrange boot order"
-msgstr "Невозможно изменить порядок загрузки."
+msgstr ""
 
 #: src/guefi:487
 msgid "Could not disable boot entry."
-msgstr "Невозможно отключить запись загрузки."
+msgstr ""
 
 #: src/guefi:496
 msgid "Could not set BootNext attribute."
-msgstr "Невозможно задать атрибут BootNext."
+msgstr ""
 
 #: src/guefi:561
 msgid "Disabled"
-msgstr "Отключено"
+msgstr "Depermisset"
 
 #: src/guefi:683
 msgid "No UEFI partition detected. Aborting."
-msgstr "Не найден раздел UEFI. Останов."
+msgstr ""
 
 #: src/guefi:687
 msgid "UEFI partition is not mounted. Aborting."
-msgstr "Раздел UEFI не смонтирован. Останов."
+msgstr ""
 
 #: src/guefi:695
 msgid "This does not look like an UEFI system. Aborting."
-msgstr "Это не похоже на систему UEFI. Останов."
+msgstr ""
 
 #: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
 msgid "GUEFI Boot Manager"
-msgstr "Менеджер загрузки GUEFI"
+msgstr "Gerente de inicie GUEFI"
 
 #: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
 msgid "A graphical frontend to efibootmgr"
-msgstr "Графический интерфейс для efibootmgr"
+msgstr "Un grafic interfacie por efibootmgr"
