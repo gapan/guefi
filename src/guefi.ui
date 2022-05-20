@@ -435,7 +435,7 @@
                   <object class="GtkEntry" id="entry_add_name">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="tooltip-text" translatable="yes">Provide a name for the new boot entry. </property>
+                    <property name="tooltip-text" translatable="yes">Provide a name for the new boot entry.</property>
                     <property name="invisible-char">●</property>
                     <property name="activates-default">True</property>
                     <property name="caps-lock-warning">False</property>
