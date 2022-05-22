@@ -32,12 +32,14 @@ REQUIREMENTS
 ============
 
 * A GNU/Linux PC running a UEFI firmware
-* Python 2.7.x
-* GTK+3 >= 3.18.x
-* efibootmgr >= 0.5.4
+* Python >= 3.9
+* GTK+3 >= 3.24.x
+* efibootmgr 17
 
 Some older versions of these might also work, but they have not been
-tested.
+tested. It has been tested only with efibootmgr version 17. Any
+older or newer version might not work properly. If it doesn't work with
+a newer version, please report it.
 
 
 TRANSLATIONS
