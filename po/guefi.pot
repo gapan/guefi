@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 11:26+0300\n"
+"POT-Creation-Date: 2022-05-20 19:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "Name:"
 msgstr ""
 
 #: src/guefi.ui:438
-msgid "Provide a name for the new boot entry. "
+msgid "Provide a name for the new boot entry."
 msgstr ""
 
 #: src/guefi.ui:467 src/guefi.ui:640

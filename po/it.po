@@ -4,23 +4,23 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Antonio Sardei <laplume@libero.it>, 2022
 # gapan <vlahavas@gmail.com>, 2022
+# Antonio Sardei <laplume@libero.it>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 11:26+0300\n"
+"POT-Creation-Date: 2022-05-20 19:03+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
+"Last-Translator: Antonio Sardei <laplume@libero.it>, 2022\n"
 "Language-Team: Italian (https://www.transifex.com/gapan/teams/47809/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/guefi.ui:67
 msgid "Boot Order"
@@ -36,15 +36,15 @@ msgstr "Avvia questo successivamente"
 
 #: src/guefi.ui:141 src/guefi.ui:392
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #: src/guefi.ui:155
 msgid "Edit"
-msgstr ""
+msgstr "Modifica"
 
 #: src/guefi.ui:169
 msgid "Delete"
-msgstr ""
+msgstr "Cancella"
 
 #: src/guefi.ui:207
 msgid "Change"
@@ -76,8 +76,8 @@ msgid "Name:"
 msgstr "Nome"
 
 #: src/guefi.ui:438
-msgid "Provide a name for the new boot entry. "
-msgstr "Assegna un nome alla Voce di Avvio"
+msgid "Provide a name for the new boot entry."
+msgstr "Fornisci un nome per questa voce di avvio"
 
 #: src/guefi.ui:467 src/guefi.ui:640
 msgid "Loader path:"
@@ -89,7 +89,7 @@ msgstr "Modifica una Voce di Avvio"
 
 #: src/guefi.ui:566
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #: src/guefi.ui:704
 msgid "Change Timeout"
@@ -125,7 +125,7 @@ msgstr "Non è possibile impostare la Sequenza di Avvio"
 
 #: src/guefi:359
 msgid "Cannot set state for this boot entry"
-msgstr ""
+msgstr "Non è possibile impostare lo stato per questa voce di avvio"
 
 #: src/guefi:369
 msgid "No EFI loader has been selected"

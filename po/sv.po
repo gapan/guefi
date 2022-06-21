@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 11:26+0300\n"
+"POT-Creation-Date: 2022-05-20 19:03+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/gapan/teams/47809/sv/)\n"
@@ -76,7 +76,7 @@ msgid "Name:"
 msgstr "Namn:"
 
 #: src/guefi.ui:438
-msgid "Provide a name for the new boot entry. "
+msgid "Provide a name for the new boot entry."
 msgstr "Ange ett namn för nya startposten."
 
 #: src/guefi.ui:467 src/guefi.ui:640

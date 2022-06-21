@@ -5,21 +5,22 @@
 # 
 # Translators:
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2022
+# gapan <vlahavas@gmail.com>, 2022
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 11:26+0300\n"
+"POT-Creation-Date: 2022-05-20 19:03+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2022\n"
+"Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
 "Language-Team: Portuguese (https://www.transifex.com/gapan/teams/47809/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/guefi.ui:67
 msgid "Boot Order"
@@ -31,19 +32,19 @@ msgstr "Ativado"
 
 #: src/guefi.ui:107
 msgid "Boot This Next"
-msgstr "Carregar a seguir"
+msgstr "Carregar este a seguir"
 
 #: src/guefi.ui:141 src/guefi.ui:392
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 #: src/guefi.ui:155
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: src/guefi.ui:169
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: src/guefi.ui:207
 msgid "Change"
@@ -74,7 +75,7 @@ msgid "Name:"
 msgstr "Nome:"
 
 #: src/guefi.ui:438
-msgid "Provide a name for the new boot entry. "
+msgid "Provide a name for the new boot entry."
 msgstr "Indique um nome para a nova entrada de arranque."
 
 #: src/guefi.ui:467 src/guefi.ui:640
@@ -87,11 +88,11 @@ msgstr "Alterar uma Entrada de Arranque"
 
 #: src/guefi.ui:566
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #: src/guefi.ui:704
 msgid "Change Timeout"
-msgstr "Alterar Timeout"
+msgstr "Alterar tempo limite"
 
 #: src/guefi.ui:739
 msgid "OK"
@@ -99,7 +100,7 @@ msgstr "Aceitar"
 
 #: src/guefi.ui:766
 msgid "Enable timeout"
-msgstr "Ativar timeout"
+msgstr "Ativar tempo limite"
 
 #: src/guefi.ui:788 src/guefi:559
 msgid "Timeout (s):"
@@ -115,7 +116,7 @@ msgstr "De certeza que quer remover esta entrada de arranque EFI?"
 
 #: src/guefi:268
 msgid "Could not delete boot entry"
-msgstr "Não foi possível apagar entrada de arranque"
+msgstr "Não foi possível eliminar entrada de arranque"
 
 #: src/guefi:297
 msgid "Could not set boot order"
@@ -123,7 +124,7 @@ msgstr "Não foi possível definir a ordem de arranque"
 
 #: src/guefi:359
 msgid "Cannot set state for this boot entry"
-msgstr ""
+msgstr "Não é possível definir estado para esta entrada de arranque"
 
 #: src/guefi:369
 msgid "No EFI loader has been selected"
@@ -146,7 +147,7 @@ msgstr "Não foi possível criar nova entrada de arranque."
 #: src/guefi:396 src/guefi:425 src/guefi:517
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
-msgstr "O carregador EFI qe selecionou não se encontra na partição EFI."
+msgstr "O carregador EFI que selecionou não se encontra na partição EFI"
 
 #: src/guefi:398 src/guefi:427 src/guefi:519
 msgid "ERROR"
@@ -158,7 +159,7 @@ msgstr "Falhou a adição de nova entrada de arranque."
 
 #: src/guefi:457
 msgid "Could not update UEFI information."
-msgstr "Não foi possível atualizar a informação UEFI"
+msgstr "Não foi possível atualizar a informação UEFI."
 
 #: src/guefi:465
 msgid "Deleting old boot entry failed."
@@ -166,7 +167,7 @@ msgstr "A eliminação da entrada antiga de arranque falhou."
 
 #: src/guefi:477
 msgid "Could not rearrange boot order"
-msgstr "Não foi possível alterar a ordem de arranque."
+msgstr "Não foi possível alterar a ordem de arranque"
 
 #: src/guefi:487
 msgid "Could not disable boot entry."
@@ -174,7 +175,7 @@ msgstr "Não foi possível desativar entrada de arranque."
 
 #: src/guefi:496
 msgid "Could not set BootNext attribute."
-msgstr "Não foi possível definir o atributo BootNext"
+msgstr "Não foi possível definir o atributo BootNext."
 
 #: src/guefi:561
 msgid "Disabled"
