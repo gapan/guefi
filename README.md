@@ -14,6 +14,8 @@ Using GUEFI you can:
 * Configure a UEFI boot entry to be the default during the next boot
 only
 
+![GUEFI screenshot](guefi.png)
+
 
 Editing a boot entry
 --------------------
