@@ -85,6 +85,15 @@ install-mo:
 		install -m 644 po/$$i.mo $(DESTDIR)/usr/share/locale/$$i/LC_MESSAGES/guefi.mo; \
 	done
 
+.PHONY: uninstall
+uninstall:
+	rm -f $(DESTDIR)/usr/sbin/guefi
+	rm -f $(DESTDIR)/usr/share/applications/guefi{,-kde}.desktop
+	rm -f $(DESTDIR)/usr/share/guefi/guefi.ui
+	rm -f $(DESTDIR)/usr/share/icons/hicolor/*/apps/guefi.png
+	rm -f $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/guefi.svg
+	rm -f $(DESTDIR)/usr/share/locale/*/LC_MESSAGES/guefi.mo
+
 .PHONY: tx-pull
 tx-pull:
 	tx pull -a
