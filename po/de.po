@@ -33,7 +33,7 @@ msgstr "Ein grafisches Frontend zu \"efibootmgr\""
 
 #: src/guefi.ui:141 src/guefi.ui:392
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: src/guefi.ui:357
 msgid "Add A Boot Entry"
@@ -45,7 +45,7 @@ msgstr "Neuer Eintrag konnte nicht hinzugefügt werden."
 
 #: src/guefi.ui:566
 msgid "Apply"
-msgstr ""
+msgstr "Übernehmen"
 
 #: src/guefi:258
 msgid "Are you sure you want to remove this EFI boot entry?"
@@ -65,7 +65,7 @@ msgstr "Abbrechen"
 
 #: src/guefi:359
 msgid "Cannot set state for this boot entry"
-msgstr ""
+msgstr "Der Status für diesen Starteintrag kann nicht festgelegt werden."
 
 #: src/guefi.ui:207
 msgid "Change"
@@ -105,7 +105,7 @@ msgstr "UEFI Information konnte nicht aktualisiert werden."
 
 #: src/guefi.ui:169
 msgid "Delete"
-msgstr ""
+msgstr "Entfernen"
 
 #: src/guefi:465
 msgid "Deleting old boot entry failed."
@@ -121,7 +121,7 @@ msgstr "FEHLER"
 
 #: src/guefi.ui:155
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: src/guefi.ui:531
 msgid "Edit A Boot Entry"
@@ -167,7 +167,7 @@ msgstr "OK"
 
 #: src/guefi.ui:438
 msgid "Provide a name for the new boot entry."
-msgstr ""
+msgstr "Geben Sie einen Namen für den neuen Starteintrag ein."
 
 #: src/guefi:378 src/guefi:441 src/guefi:456 src/guefi:464 src/guefi:476
 #: src/guefi:486 src/guefi:495
