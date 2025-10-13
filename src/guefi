@@ -7,8 +7,6 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import os
 import sys
-import shutil
-from pathlib import Path
 
 # Internationalization
 import locale
@@ -18,8 +16,6 @@ locale.bindtextdomain("guefi", "/usr/share/locale")
 gettext.bindtextdomain("guefi", "/usr/share/locale")
 gettext.textdomain("guefi")
 _ = gettext.gettext
-
-
 
 
 def efi_name_test(name):
@@ -35,15 +31,6 @@ class EntryAction:
     ToggleBootNext = 2
 
 class UEFI:
-
-    def get_sudo() -> str:
-        sudo_list = ["gsudo", "pkexec", "gksu", "gksudo", "kdesu", "kdesudo"]
-        for sudo in sudo_list:
-            sudo_exists = Path(f"/usr/bin/{sudo}").exists() or shutil.which(sudo) is not None
-        if sudo_exists:
-            return sudo
-        return None
-        sudo = get_sudo()
 
     def __init__(self):
         efi_partition = self.get_efi_partition()
@@ -91,10 +78,10 @@ class UEFI:
     def create_entry(self, name, loader=None):
         if loader:
             new_loader = loader.replace('/', '\\')
-            cmd = [sudo, 'efibootmgr', '-c', '-d', self.efi_hd, '-l', new_loader,
+            cmd = ['efibootmgr', '-c', '-d', self.efi_hd, '-l', new_loader,
                     '-p', self.efi_partition_number, '-L', name]
         else:
-            cmd = [get_sudo, 'efibootmgr', '-c', '-d', self.efi_hd,
+            cmd = ['efibootmgr', '-c', '-d', self.efi_hd,
                     '-p', self.efi_partition_number, '-L', name]
         return subprocess.call(cmd)
 
@@ -105,11 +92,11 @@ class UEFI:
                 break
 
     def set_timeout(self, timeout):
-        p = subprocess.call([get_sudo, 'efibootmgr', '-t', str(timeout)])
+        p = subprocess.call(['efibootmgr', '-t', str(timeout)])
         return p
 
     def delete_timeout(self):
-        p = subprocess.call([get_sudo, 'efibootmgr', '-T'])
+        p = subprocess.call(['efibootmgr', '-T'])
         return p
 
     def get_loader(self, number):
@@ -127,7 +114,7 @@ class UEFI:
         return loader
 
     def set_boot_order(self, order):
-        return subprocess.call([get_sudo, 'efibootmgr', '-o', ','.join(order)])
+        return subprocess.call(['efibootmgr', '-o', ','.join(order)])
 
     def update(self):
         self.entries_list = []
@@ -174,7 +161,7 @@ class UEFI:
 
 class Entry:
 
-    def __init__(self, number, name, enabled=True, boot_next=False, loader='elilo.efi'):
+    def __init__(self, number, name, enabled=True, boot_next=False, loader='\elilo.efi'):
         self.number = number
         self.name = name
         self.enabled = enabled
@@ -182,31 +169,31 @@ class Entry:
         self.boot_next = boot_next
 
     def activate(self):
-        p = subprocess.call([self.sudo, 'efibootmgr', '-a', '-b', self.number])
+        p = subprocess.call(['efibootmgr', '-a', '-b', self.number])
         if p == 0:
             self.enabled = True
         return p
 
     def deactivate(self):
-        p = subprocess.call([self.sudo, 'efibootmgr', '-A', '-b', self.number])
+        p = subprocess.call(['efibootmgr', '-A', '-b', self.number])
         if p == 0:
             self.enabled = False
         return p
 
     def enable_boot_next(self):
-        p = subprocess.call([self.sudo, 'efibootmgr', '-n', self.number])
+        p = subprocess.call(['efibootmgr', '-n', self.number])
         if p == 0:
             self.boot_next = True
         return p
 
     def disable_boot_next(self):
-        p = subprocess.call([self.sudo, 'efibootmgr', '-N'])
+        p = subprocess.call(['efibootmgr', '-N'])
         if p == 0:
             self.boot_next = False
         return p
 
     def delete(self):
-        p = subprocess.call([self.sudo, 'efibootmgr', '-B', '-b', self.number])
+        p = subprocess.call(['efibootmgr', '-B', '-b', self.number])
         return p
 
 
@@ -274,7 +261,7 @@ class GUEFI:
             response = dialog.run()
             p = 0
             if response == Gtk.ResponseType.YES:
-                p = subprocess.call([get_sudo, 'efibootmgr', '-B', '-b', number])
+                p = subprocess.call(['efibootmgr', '-B', '-b', number])
             dialog.destroy()
             self.update_list()
             if p != 0:
@@ -471,7 +458,7 @@ class GUEFI:
                 self.show_dialog(msg, parent = self.dialog_edit)
         if not error and not done:
             # time to delete the old entry
-            p = subprocess.call([get_sudo, 'efibootmgr', '-B', '-b', number])
+            p = subprocess.call(['efibootmgr', '-B', '-b', number])
             if p != 0:
                 error = True
                 msg = "%s %s" % (_("Something went wrong."),
@@ -493,7 +480,7 @@ class GUEFI:
             # if the previous entry is disabled, so should be the new one.
             # Default for a new entry is to be enabled, so we don't have to
             # explicitly enabled it.
-            p = subprocess.call([get_sudo, 'efibootmgr', '-A', '-b', new_number])
+            p = subprocess.call(['efibootmgr', '-A', '-b', new_number])
             if p != 0:
                 error = True
                 msg = "%s %s" % (_("Something went wrong."),
@@ -502,7 +489,7 @@ class GUEFI:
         if not error and not done and boot_next:
             # if the previous entry is set as BootNext, so should be the new
             # one. Default for a new entry is to be disabled.
-            p = subprocess.call([get_sudo, 'efibootmgr', '-n', new_number])
+            p = subprocess.call(['efibootmgr', '-n', new_number])
             if p != 0:
                 error = True
                 msg = "%s %s" % (_("Something went wrong."),
