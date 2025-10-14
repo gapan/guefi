@@ -1,7 +1,7 @@
 [Desktop Entry]
 _Name=GUEFI Boot Manager
 _Comment=A graphical frontend to efibootmgr
-Exec=kdesu guefi
+Exec=guefi-pkexec
 Icon=guefi
 Terminal=false
 Type=Application
