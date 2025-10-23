@@ -3,7 +3,7 @@ DESTDIR ?= /
 PACKAGE_LOCALE_DIR ?= /usr/share/locale
 
 .PHONY: all
-all: mo desktop
+all: mo desktop policy
 
 .PHONY: mo
 mo:
@@ -15,6 +15,10 @@ mo:
 desktop:
 	intltool-merge po/ -d -u \
 		guefi.desktop.in guefi.desktop
+
+.PHONY: policy
+policy:
+	intltool-merge po/ -d -u org.salixos.guefi.policy.in org.salixos.guefi.policy
 
 .PHONY: updatepo
 updatepo:
@@ -35,12 +39,17 @@ pot:
 		-L Python \
 		-o po/guefi.pot \
 		src/guefi
+	intltool-extract --type="gettext/xml" \
+		org.salixos.guefi.policy.in
+	xgettext --from-code=utf-8 -j -L C -kN_ \
+		-o po/guefi.pot org.salixos.guefi.policy.in.h
 	intltool-extract --type="gettext/ini" \
 		guefi.desktop.in
 	sed -i '/char \*s = N_("guefi");/d' *.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ \
 		-o po/guefi.pot guefi.desktop.in.h
 	rm -f guefi.desktop.in.h
+	rm -f org.salixos.guefi.policy.in.h
 
 .PHONY: clean
 clean:
@@ -58,7 +67,7 @@ install: install-icons install-mo
 	install -d -m 755 $(DESTDIR)/etc
 	install -m 755 src/guefi $(DESTDIR)/usr/sbin/
 	install -m 755 src/guefi-pkexec $(DESTDIR)/usr/bin/
-	install -m 755 src/com.gapan.pkexec.guefi.policy $(DESTDIR)/usr/share/polkit-1/actions/
+	install -m 755 org.salixos.guefi.policy.in $(DESTDIR)/usr/share/polkit-1/actions/
 	install -m 644 src/guefi.ui $(DESTDIR)/usr/share/guefi/
 	install -m 644 guefi.desktop $(DESTDIR)/usr/share/applications/
 
