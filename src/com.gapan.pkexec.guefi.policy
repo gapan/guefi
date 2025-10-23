@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+
+  <action id="com.gapan.pkexec.guefi">
+    <message>Authentication is required to run the GUEFI Boot Manager</message>
+    <message xml:lang="de">Um den GUEFI Bootmanager zu benutzen, ist eine Legitimation notwendig</message>
+    <message xml:lang="es">Para ejecutar el gestor de Arranque GUEFI necesita autenticarse</message>
+    <message xml:lang="fr">Une authentification est requise pour exécuter le gestionnaire d'amorcage GUEFI</message>
+    <message xml:lang="it">È richiesta l'autenticazione per avviare il gestore di Avvio GUEFI</message>
+	<message xml:lang="nl">Voer uw wachtwoord in om GUEFI Boot Manager te openen</message>
+    <message xml:lang="pl">W celu uruchomienia programu GUEFI Boot Manager wymagane jest dodatkowe uwierzytelnianie</message>
+    <message xml:lang="pt_BR">Autenticação é exigida para executar o Gerenciador de Pacotes Synaptic</message>
+	<message xml:lang="ru">Для запуска менеджера Менеджер загрузки GUEFI требуется аутентификация</message>
+	<message xml:lang="sv">Autentisering krävs för att köra GUEFI starthanterare</message>
+    <message xml:lang="tr">GUEFI Ön Yükleme Yöneticisi'ni çalıştırmak için yetkilendirme gerekiyor</message>
+    <icon_name>guefi</icon_name>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/sbin/guefi</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+
+</policyconfig>

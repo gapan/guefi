@@ -57,10 +57,14 @@ clean:
 .PHONY: install
 install: install-icons install-mo
 	install -d -m 755 $(DESTDIR)/usr/sbin
+	install -d -m 755 $(DESTDIR)/usr/bin
+	install -d -m 755 $(DESTDIR)/usr/share/polkit-1/actions
 	install -d -m 755 $(DESTDIR)/usr/share/applications
 	install -d -m 755 $(DESTDIR)/usr/share/guefi
 	install -d -m 755 $(DESTDIR)/etc
 	install -m 755 src/guefi $(DESTDIR)/usr/sbin/
+	install -m 755 src/guefi-pkexec $(DESTDIR)/usr/bin/
+	install -m 755 src/com.gapan.pkexec.guefi.policy $(DESTDIR)/usr/share/polkit-1/actions/
 	install -m 644 src/guefi.ui $(DESTDIR)/usr/share/guefi/
 	install -m 644 guefi.desktop $(DESTDIR)/usr/share/applications/
 	install -m 644 guefi-kde.desktop $(DESTDIR)/usr/share/applications/
@@ -88,6 +92,8 @@ install-mo:
 .PHONY: uninstall
 uninstall:
 	rm -f $(DESTDIR)/usr/sbin/guefi
+	rm -f $(DESTDIR)/usr/bin/guefi-pkexec
+	rm -f $(DESTDIR)/usr/share/polkit-1/actions/com.gapan.pkexec.guefi.policy
 	rm -f $(DESTDIR)/usr/share/applications/guefi{,-kde}.desktop
 	rm -f $(DESTDIR)/usr/share/guefi/guefi.ui
 	rm -f $(DESTDIR)/usr/share/icons/hicolor/*/apps/guefi.png
