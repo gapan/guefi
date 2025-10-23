@@ -15,8 +15,6 @@ mo:
 desktop:
 	intltool-merge po/ -d -u \
 		guefi.desktop.in guefi.desktop
-	intltool-merge po/ -d -u \
-		guefi-kde.desktop.in guefi-kde.desktop
 
 .PHONY: updatepo
 updatepo:
@@ -39,20 +37,16 @@ pot:
 		src/guefi
 	intltool-extract --type="gettext/ini" \
 		guefi.desktop.in
-	intltool-extract --type="gettext/ini" \
-		guefi-kde.desktop.in
 	sed -i '/char \*s = N_("guefi");/d' *.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ \
 		-o po/guefi.pot guefi.desktop.in.h
-	xgettext --from-code=utf-8 -j -L C -kN_ \
-		-o po/guefi.pot guefi-kde.desktop.in.h
-	rm -f guefi.desktop.in.h guefi-kde.desktop.in.h
+	rm -f guefi.desktop.in.h
 
 .PHONY: clean
 clean:
 	rm -f po/*.mo
 	rm -f po/*.po~
-	rm -f guefi.desktop guefi-kde.desktop
+	rm -f guefi.desktop
 
 .PHONY: install
 install: install-icons install-mo
@@ -67,7 +61,6 @@ install: install-icons install-mo
 	install -m 755 src/com.gapan.pkexec.guefi.policy $(DESTDIR)/usr/share/polkit-1/actions/
 	install -m 644 src/guefi.ui $(DESTDIR)/usr/share/guefi/
 	install -m 644 guefi.desktop $(DESTDIR)/usr/share/applications/
-	install -m 644 guefi-kde.desktop $(DESTDIR)/usr/share/applications/
 
 .PHONY: install-icons
 install-icons:
@@ -94,7 +87,7 @@ uninstall:
 	rm -f $(DESTDIR)/usr/sbin/guefi
 	rm -f $(DESTDIR)/usr/bin/guefi-pkexec
 	rm -f $(DESTDIR)/usr/share/polkit-1/actions/com.gapan.pkexec.guefi.policy
-	rm -f $(DESTDIR)/usr/share/applications/guefi{,-kde}.desktop
+	rm -f $(DESTDIR)/usr/share/applications/guefi.desktop
 	rm -f $(DESTDIR)/usr/share/guefi/guefi.ui
 	rm -f $(DESTDIR)/usr/share/icons/hicolor/*/apps/guefi.png
 	rm -f $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/guefi.svg
