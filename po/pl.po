@@ -2,210 +2,215 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # Cyrille Pontvieux <jrd@enialis.net>, 2016
 # 161bd750cc8572440963b84e861d7973_ed8d533 <cbd6230593fe094da208a2693be73f8f_459393>, 2017
 # Karol Chmurzyński <chmuri@gmail.com>, 2017
-# mich sa, 2022
 # Nikki Blanco <rayla@tutanota.com>, 2022
 # gapan <vlahavas@gmail.com>, 2022
-#
+# mich sa, 2025
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 19:03+0300\n"
+"POT-Creation-Date: 2025-10-23 21:40+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
-"Language-Team: Polish (https://www.transifex.com/gapan/teams/47809/pl/)\n"
-"Language: pl\n"
+"Last-Translator: mich sa, 2025\n"
+"Language-Team: Polish (https://app.transifex.com/gapan/teams/47809/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: src/guefi.ui:324
-msgid "A GTK+3 frontend for efibootmgr"
-msgstr "Frontend GTK+3 dla efibootmgr"
-
-#: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
-msgid "A graphical frontend to efibootmgr"
-msgstr "Graficzny tryb programu efibootmgr"
-
-#: src/guefi.ui:141 src/guefi.ui:392
-msgid "Add"
+#. (itstool) path: action/description
+#: org.salixos.guefi.policy.in:10
+msgid "Run GUEFI Boot Manager as root"
 msgstr ""
 
-#: src/guefi.ui:357
-msgid "Add A Boot Entry"
-msgstr "Dodaj Wpis Uruchamiania"
-
-#: src/guefi:442
-msgid "Adding new boot entry failed."
-msgstr "Dodawanie nowego wpisu zakończyło się błędem."
-
-#: src/guefi.ui:566
-msgid "Apply"
+#. (itstool) path: action/message
+#: org.salixos.guefi.policy.in:11
+msgid "Authentication is required to run the GUEFI Boot Manager"
 msgstr ""
-
-#: src/guefi:258
-msgid "Are you sure you want to remove this EFI boot entry?"
-msgstr "Czy na pewno chcesz usunąć ten wpis EFI? "
 
 #: src/guefi.ui:67
 msgid "Boot Order"
 msgstr "Kolejność uruchomienia"
 
+#: src/guefi.ui:92
+msgid "Enabled"
+msgstr "Włączony"
+
 #: src/guefi.ui:107
 msgid "Boot This Next"
 msgstr "Uruchom Ten Następny"
 
-#: src/guefi.ui:378 src/guefi.ui:552 src/guefi.ui:725
-msgid "Cancel"
-msgstr "Anuluj"
+#: src/guefi.ui:141 src/guefi.ui:392
+msgid "Add"
+msgstr "Dodaj"
 
-#: src/guefi:359
-msgid "Cannot set state for this boot entry"
-msgstr ""
+#: src/guefi.ui:155
+msgid "Edit"
+msgstr "Edytuj"
+
+#: src/guefi.ui:169
+msgid "Delete"
+msgstr "Usuń"
 
 #: src/guefi.ui:207
 msgid "Change"
 msgstr "Zmień"
 
-#: src/guefi.ui:704
-msgid "Change Timeout"
-msgstr "Zmień limity czasowe"
+#: src/guefi.ui:275
+msgid "You can rearrange the boot order by dragging entries"
+msgstr "Możesz zmienić kolejność uruchamiania przez przeciąganie wpisów "
 
-#: src/guefi:379
-msgid "Could not create new boot entry."
-msgstr "Nie można dodać nowego wpisu bootowania."
+#: src/guefi.ui:324
+msgid "A GTK+3 frontend for efibootmgr"
+msgstr "Frontend GTK+3 dla efibootmgr"
 
-#: src/guefi:268
-msgid "Could not delete boot entry"
-msgstr "Nie można usunąć tego wpisu."
+#: src/guefi.ui:328
+msgid "translator-credits"
+msgstr "tłumacze"
 
-#: src/guefi:487
-msgid "Could not disable boot entry."
-msgstr "Nie można wyłączyć wpisu boot."
+#: src/guefi.ui:357
+msgid "Add A Boot Entry"
+msgstr "Dodaj Wpis Uruchamiania"
 
-#: src/guefi:477
-msgid "Could not rearrange boot order"
-msgstr "Nie można zmienić kolejności bootowania."
+#: src/guefi.ui:378 src/guefi.ui:552 src/guefi.ui:725
+msgid "Cancel"
+msgstr "Anuluj"
 
-#: src/guefi:496
-msgid "Could not set BootNext attribute."
-msgstr "Nie można ustawić atrybutu BootNext "
+#: src/guefi.ui:426 src/guefi.ui:600
+msgid "Name:"
+msgstr "Nazwa:"
 
-#: src/guefi:297
-msgid "Could not set boot order"
-msgstr "Nie można ustawić takiej kolejności bootowania."
+#: src/guefi.ui:438
+msgid "Provide a name for the new boot entry."
+msgstr "Podaj nazwę nowego wpisu bootowania."
 
-#: src/guefi:457
-msgid "Could not update UEFI information."
-msgstr "Nie można zaktualizować UEFI informacji."
-
-#: src/guefi.ui:169
-msgid "Delete"
-msgstr ""
-
-#: src/guefi:465
-msgid "Deleting old boot entry failed."
-msgstr "Usuwanie starego  wpisu bootowania."
-
-#: src/guefi:561
-msgid "Disabled"
-msgstr "Wyłączony"
-
-#: src/guefi:398 src/guefi:427 src/guefi:519
-msgid "ERROR"
-msgstr "BŁĄD"
-
-#: src/guefi.ui:155
-msgid "Edit"
-msgstr ""
+#: src/guefi.ui:467 src/guefi.ui:640
+msgid "Loader path:"
+msgstr "Ścieżka programu ładującego:"
 
 #: src/guefi.ui:531
 msgid "Edit A Boot Entry"
 msgstr "Edytuj wpis uruchamiania"
 
+#: src/guefi.ui:566
+msgid "Apply"
+msgstr "Zastosuj"
+
+#: src/guefi.ui:704
+msgid "Change Timeout"
+msgstr "Zmień limity czasowe"
+
+#: src/guefi.ui:739
+msgid "OK"
+msgstr "OK"
+
 #: src/guefi.ui:766
 msgid "Enable timeout"
 msgstr "Włącz limity czasowe"
 
-#: src/guefi.ui:92
-msgid "Enabled"
-msgstr "Włączony"
+#: src/guefi.ui:788 src/guefi:559
+msgid "Timeout (s):"
+msgstr "Limit czasowy (s):"
 
-#: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
-msgid "GUEFI Boot Manager"
-msgstr "GUEFI Boot Manager"
+#: src/guefi:245
+msgid "This UEFI boot entry cannot be edited"
+msgstr "Ten wpis UEFI nie może być edytowany"
+
+#: src/guefi:258
+msgid "Are you sure you want to remove this EFI boot entry?"
+msgstr "Czy na pewno chcesz usunąć ten wpis EFI? "
+
+#: src/guefi:268
+msgid "Could not delete boot entry"
+msgstr "Nie można usunąć tego wpisu."
+
+#: src/guefi:297
+msgid "Could not set boot order"
+msgstr "Nie można ustawić takiej kolejności bootowania."
+
+#: src/guefi:359
+msgid "Cannot set state for this boot entry"
+msgstr "Nie można ustawić stanu dla tego wpisu bootowania"
+
+#: src/guefi:369
+msgid "No EFI loader has been selected"
+msgstr "Nie wybrano EFI loadera"
 
 #: src/guefi:372 src/guefi:430
 msgid ""
 "Invalid name. Allowed characters are the space character and the following:"
 msgstr "Niedozwolona nazwa. Dozwolone znaki są spacja oraz:"
 
-#: src/guefi.ui:467 src/guefi.ui:640
-msgid "Loader path:"
-msgstr "Ścieżka programu ładującego:"
-
-#: src/guefi.ui:426 src/guefi.ui:600
-msgid "Name:"
-msgstr "Nazwa:"
-
-#: src/guefi:369
-msgid "No EFI loader has been selected"
-msgstr "Nie wybrano EFI loadera"
-
-#: src/guefi:683
-msgid "No UEFI partition detected. Aborting."
-msgstr "Nie wykryto partycji UEFI. Cofam zmiany."
-
-#: src/guefi.ui:739
-msgid "OK"
-msgstr "OK"
-
-#: src/guefi.ui:438
-msgid "Provide a name for the new boot entry."
-msgstr ""
-
 #: src/guefi:378 src/guefi:441 src/guefi:456 src/guefi:464 src/guefi:476
 #: src/guefi:486 src/guefi:495
 msgid "Something went wrong."
 msgstr "Coś poszło nie tak."
+
+#: src/guefi:379
+msgid "Could not create new boot entry."
+msgstr "Nie można dodać nowego wpisu bootowania."
 
 #: src/guefi:396 src/guefi:425 src/guefi:517
 msgid ""
 "The EFI loader you have selected is not located inside the EFI partition"
 msgstr "EFI loadre który wybrałeś nie znajduje partycji EFI."
 
-#: src/guefi:245
-msgid "This UEFI boot entry cannot be edited"
-msgstr "Ten wpis UEFI nie może być edytowany"
+#: src/guefi:398 src/guefi:427 src/guefi:519
+msgid "ERROR"
+msgstr "BŁĄD"
 
-#: src/guefi:695
-msgid "This does not look like an UEFI system. Aborting."
-msgstr "To nie wygląda na system UEFI. Cofam zmiany."
+#: src/guefi:442
+msgid "Adding new boot entry failed."
+msgstr "Dodawanie nowego wpisu zakończyło się błędem."
 
-#: src/guefi.ui:788 src/guefi:559
-msgid "Timeout (s):"
-msgstr "Limit czasowy (s):"
+#: src/guefi:457
+msgid "Could not update UEFI information."
+msgstr "Nie można zaktualizować UEFI informacji."
+
+#: src/guefi:465
+msgid "Deleting old boot entry failed."
+msgstr "Usuwanie starego  wpisu bootowania."
+
+#: src/guefi:477
+msgid "Could not rearrange boot order"
+msgstr "Nie można zmienić kolejności bootowania."
+
+#: src/guefi:487
+msgid "Could not disable boot entry."
+msgstr "Nie można wyłączyć wpisu boot."
+
+#: src/guefi:496
+msgid "Could not set BootNext attribute."
+msgstr "Nie można ustawić atrybutu BootNext "
+
+#: src/guefi:561
+msgid "Disabled"
+msgstr "Wyłączony"
+
+#: src/guefi:683
+msgid "No UEFI partition detected. Aborting."
+msgstr "Nie wykryto partycji UEFI. Cofam zmiany."
 
 #: src/guefi:687
 msgid "UEFI partition is not mounted. Aborting."
 msgstr "UFEI partycja nie została zamontowania. Cofam zmiany."
 
-#: src/guefi.ui:275
-msgid "You can rearrange the boot order by dragging entries"
-msgstr "Możesz zmienić kolejność uruchamiania przez przeciąganie wpisów "
+#: src/guefi:695
+msgid "This does not look like an UEFI system. Aborting."
+msgstr "To nie wygląda na system UEFI. Cofam zmiany."
 
-#: src/guefi.ui:328
-msgid "translator-credits"
-msgstr "tłumacze"
+#: guefi.desktop.in.h:1
+msgid "GUEFI Boot Manager"
+msgstr "GUEFI Boot Manager"
 
-#~ msgid "Provide a name for the new boot entry. "
-#~ msgstr "Podaj nazwę nowego wpisu uruchamiania."
+#: guefi.desktop.in.h:2
+msgid "A graphical frontend to efibootmgr"
+msgstr "Graficzny tryb programu efibootmgr"

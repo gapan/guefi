@@ -2,200 +2,71 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 # Translators:
 # tsuren <hydrangea_and_snail@hotmail.com>, 2016
-# ふうせん Fu-sen. | BALLOON a.k.a. Fu-sen., 2022
-#
+# 🎈 BALLOON | FU-SEN, 2022
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 19:03+0300\n"
+"POT-Creation-Date: 2025-10-23 21:40+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: ふうせん Fu-sen. | BALLOON a.k.a. Fu-sen., 2022\n"
-"Language-Team: Japanese (https://www.transifex.com/gapan/teams/47809/ja/)\n"
-"Language: ja\n"
+"Last-Translator: 🎈 BALLOON | FU-SEN, 2022\n"
+"Language-Team: Japanese (https://app.transifex.com/gapan/teams/47809/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/guefi.ui:324
-msgid "A GTK+3 frontend for efibootmgr"
-msgstr "efibootmgr GTK+3 フロントエンド"
-
-#: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
-msgid "A graphical frontend to efibootmgr"
-msgstr "efibootmgr グラフィカルフロントエンド"
-
-#: src/guefi.ui:141 src/guefi.ui:392
-msgid "Add"
+#. (itstool) path: action/description
+#: org.salixos.guefi.policy.in:10
+msgid "Run GUEFI Boot Manager as root"
 msgstr ""
 
-#: src/guefi.ui:357
-msgid "Add A Boot Entry"
-msgstr "起動エントリーの追加"
-
-#: src/guefi:442
-msgid "Adding new boot entry failed."
-msgstr "新たな起動エントリーの追加に失敗しました。"
-
-#: src/guefi.ui:566
-msgid "Apply"
+#. (itstool) path: action/message
+#: org.salixos.guefi.policy.in:11
+msgid "Authentication is required to run the GUEFI Boot Manager"
 msgstr ""
-
-#: src/guefi:258
-msgid "Are you sure you want to remove this EFI boot entry?"
-msgstr "この EFI 起動エントリーを削除してよろしいですか？"
 
 #: src/guefi.ui:67
 msgid "Boot Order"
 msgstr "起動順"
 
+#: src/guefi.ui:92
+msgid "Enabled"
+msgstr "有効化"
+
 #: src/guefi.ui:107
 msgid "Boot This Next"
 msgstr "次を起動"
 
-#: src/guefi.ui:378 src/guefi.ui:552 src/guefi.ui:725
-msgid "Cancel"
-msgstr "キャンセル"
+#: src/guefi.ui:141 src/guefi.ui:392
+msgid "Add"
+msgstr ""
 
-#: src/guefi:359
-msgid "Cannot set state for this boot entry"
+#: src/guefi.ui:155
+msgid "Edit"
+msgstr ""
+
+#: src/guefi.ui:169
+msgid "Delete"
 msgstr ""
 
 #: src/guefi.ui:207
 msgid "Change"
 msgstr "変更"
 
-#: src/guefi.ui:704
-msgid "Change Timeout"
-msgstr "タイムアウトの変更"
-
-#: src/guefi:379
-msgid "Could not create new boot entry."
-msgstr "新しい起動エントリーを生成できません。"
-
-#: src/guefi:268
-msgid "Could not delete boot entry"
-msgstr "起動エントリーを削除できません"
-
-#: src/guefi:487
-msgid "Could not disable boot entry."
-msgstr "起動エントリーを無効にできません。"
-
-#: src/guefi:477
-msgid "Could not rearrange boot order"
-msgstr "起動エントリーの修正が行えません"
-
-#: src/guefi:496
-msgid "Could not set BootNext attribute."
-msgstr "BootNext 設定を行う事ができません。"
-
-#: src/guefi:297
-msgid "Could not set boot order"
-msgstr "起動順を設定できません"
-
-#: src/guefi:457
-msgid "Could not update UEFI information."
-msgstr "EFI 情報の更新が行えません。"
-
-#: src/guefi.ui:169
-msgid "Delete"
-msgstr ""
-
-#: src/guefi:465
-msgid "Deleting old boot entry failed."
-msgstr "古い起動エントリーの削除に失敗しました。"
-
-#: src/guefi:561
-msgid "Disabled"
-msgstr "無効化"
-
-#: src/guefi:398 src/guefi:427 src/guefi:519
-msgid "ERROR"
-msgstr "エラー"
-
-#: src/guefi.ui:155
-msgid "Edit"
-msgstr ""
-
-#: src/guefi.ui:531
-msgid "Edit A Boot Entry"
-msgstr "起動エントリーの編集"
-
-#: src/guefi.ui:766
-msgid "Enable timeout"
-msgstr "タイムアウトを有効にする"
-
-#: src/guefi.ui:92
-msgid "Enabled"
-msgstr "有効化"
-
-#: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
-msgid "GUEFI Boot Manager"
-msgstr "GUEFI ブートマネージャー"
-
-#: src/guefi:372 src/guefi:430
-msgid ""
-"Invalid name. Allowed characters are the space character and the following:"
-msgstr "名前が無効です。使用できる文字は、スペース文字と次の通りです:"
-
-#: src/guefi.ui:467 src/guefi.ui:640
-msgid "Loader path:"
-msgstr "読み込みパス:"
-
-#: src/guefi.ui:426 src/guefi.ui:600
-msgid "Name:"
-msgstr "名前:"
-
-#: src/guefi:369
-msgid "No EFI loader has been selected"
-msgstr "EFI ローダーは選択できません"
-
-#: src/guefi:683
-msgid "No UEFI partition detected. Aborting."
-msgstr "UEFI パーティションは検出されませんでした。中断します。"
-
-#: src/guefi.ui:739
-msgid "OK"
-msgstr ""
-
-#: src/guefi.ui:438
-msgid "Provide a name for the new boot entry."
-msgstr ""
-
-#: src/guefi:378 src/guefi:441 src/guefi:456 src/guefi:464 src/guefi:476
-#: src/guefi:486 src/guefi:495
-msgid "Something went wrong."
-msgstr "何か誤りがあります。"
-
-#: src/guefi:396 src/guefi:425 src/guefi:517
-msgid ""
-"The EFI loader you have selected is not located inside the EFI partition"
-msgstr "選択された EFI ローダーは EFI パーティション内に配置されていません"
-
-#: src/guefi:245
-msgid "This UEFI boot entry cannot be edited"
-msgstr "UEFI 起動エントリーは編集できません"
-
-#: src/guefi:695
-msgid "This does not look like an UEFI system. Aborting."
-msgstr "これは UEFI システムには見えません。中断します。"
-
-#: src/guefi.ui:788 src/guefi:559
-msgid "Timeout (s):"
-msgstr "タイムアウト:"
-
-#: src/guefi:687
-msgid "UEFI partition is not mounted. Aborting."
-msgstr "UEFI パーティションはマウントされていません。中断します。"
-
 #: src/guefi.ui:275
 msgid "You can rearrange the boot order by dragging entries"
 msgstr "エントリーをドラッグすることで起動順序を並べ替えることができます"
+
+#: src/guefi.ui:324
+msgid "A GTK+3 frontend for efibootmgr"
+msgstr "efibootmgr GTK+3 フロントエンド"
 
 #: src/guefi.ui:328
 msgid "translator-credits"
@@ -203,5 +74,141 @@ msgstr ""
 "BALLOON a.k.a. Fu-sen. (Keiichi SHIGA) <balloonakafusen+salix@gmail.com>\n"
 "その他"
 
-#~ msgid "Provide a name for the new boot entry. "
-#~ msgstr "新しい起動エントリーの名前を指定して下さい。"
+#: src/guefi.ui:357
+msgid "Add A Boot Entry"
+msgstr "起動エントリーの追加"
+
+#: src/guefi.ui:378 src/guefi.ui:552 src/guefi.ui:725
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: src/guefi.ui:426 src/guefi.ui:600
+msgid "Name:"
+msgstr "名前:"
+
+#: src/guefi.ui:438
+msgid "Provide a name for the new boot entry."
+msgstr ""
+
+#: src/guefi.ui:467 src/guefi.ui:640
+msgid "Loader path:"
+msgstr "読み込みパス:"
+
+#: src/guefi.ui:531
+msgid "Edit A Boot Entry"
+msgstr "起動エントリーの編集"
+
+#: src/guefi.ui:566
+msgid "Apply"
+msgstr ""
+
+#: src/guefi.ui:704
+msgid "Change Timeout"
+msgstr "タイムアウトの変更"
+
+#: src/guefi.ui:739
+msgid "OK"
+msgstr ""
+
+#: src/guefi.ui:766
+msgid "Enable timeout"
+msgstr "タイムアウトを有効にする"
+
+#: src/guefi.ui:788 src/guefi:559
+msgid "Timeout (s):"
+msgstr "タイムアウト:"
+
+#: src/guefi:245
+msgid "This UEFI boot entry cannot be edited"
+msgstr "UEFI 起動エントリーは編集できません"
+
+#: src/guefi:258
+msgid "Are you sure you want to remove this EFI boot entry?"
+msgstr "この EFI 起動エントリーを削除してよろしいですか？"
+
+#: src/guefi:268
+msgid "Could not delete boot entry"
+msgstr "起動エントリーを削除できません"
+
+#: src/guefi:297
+msgid "Could not set boot order"
+msgstr "起動順を設定できません"
+
+#: src/guefi:359
+msgid "Cannot set state for this boot entry"
+msgstr ""
+
+#: src/guefi:369
+msgid "No EFI loader has been selected"
+msgstr "EFI ローダーは選択できません"
+
+#: src/guefi:372 src/guefi:430
+msgid ""
+"Invalid name. Allowed characters are the space character and the following:"
+msgstr "名前が無効です。使用できる文字は、スペース文字と次の通りです:"
+
+#: src/guefi:378 src/guefi:441 src/guefi:456 src/guefi:464 src/guefi:476
+#: src/guefi:486 src/guefi:495
+msgid "Something went wrong."
+msgstr "何か誤りがあります。"
+
+#: src/guefi:379
+msgid "Could not create new boot entry."
+msgstr "新しい起動エントリーを生成できません。"
+
+#: src/guefi:396 src/guefi:425 src/guefi:517
+msgid ""
+"The EFI loader you have selected is not located inside the EFI partition"
+msgstr "選択された EFI ローダーは EFI パーティション内に配置されていません"
+
+#: src/guefi:398 src/guefi:427 src/guefi:519
+msgid "ERROR"
+msgstr "エラー"
+
+#: src/guefi:442
+msgid "Adding new boot entry failed."
+msgstr "新たな起動エントリーの追加に失敗しました。"
+
+#: src/guefi:457
+msgid "Could not update UEFI information."
+msgstr "EFI 情報の更新が行えません。"
+
+#: src/guefi:465
+msgid "Deleting old boot entry failed."
+msgstr "古い起動エントリーの削除に失敗しました。"
+
+#: src/guefi:477
+msgid "Could not rearrange boot order"
+msgstr "起動エントリーの修正が行えません"
+
+#: src/guefi:487
+msgid "Could not disable boot entry."
+msgstr "起動エントリーを無効にできません。"
+
+#: src/guefi:496
+msgid "Could not set BootNext attribute."
+msgstr "BootNext 設定を行う事ができません。"
+
+#: src/guefi:561
+msgid "Disabled"
+msgstr "無効化"
+
+#: src/guefi:683
+msgid "No UEFI partition detected. Aborting."
+msgstr "UEFI パーティションは検出されませんでした。中断します。"
+
+#: src/guefi:687
+msgid "UEFI partition is not mounted. Aborting."
+msgstr "UEFI パーティションはマウントされていません。中断します。"
+
+#: src/guefi:695
+msgid "This does not look like an UEFI system. Aborting."
+msgstr "これは UEFI システムには見えません。中断します。"
+
+#: guefi.desktop.in.h:1
+msgid "GUEFI Boot Manager"
+msgstr "GUEFI ブートマネージャー"
+
+#: guefi.desktop.in.h:2
+msgid "A graphical frontend to efibootmgr"
+msgstr "efibootmgr グラフィカルフロントエンド"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 19:03+0300\n"
+"POT-Creation-Date: 2025-10-23 21:40+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
 "Last-Translator: gapan <vlahavas@gmail.com>, 2024\n"
 "Language-Team: German (https://app.transifex.com/gapan/teams/47809/de/)\n"
@@ -22,6 +22,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. (itstool) path: action/description
+#: org.salixos.guefi.policy.in:10
+msgid "Run GUEFI Boot Manager as root"
+msgstr ""
+
+#. (itstool) path: action/message
+#: org.salixos.guefi.policy.in:11
+msgid "Authentication is required to run the GUEFI Boot Manager"
+msgstr ""
 
 #: src/guefi.ui:67
 msgid "Boot Order"
@@ -198,10 +208,10 @@ msgstr "UEFI Partition ist nicht eingebunden. Abbruch."
 msgid "This does not look like an UEFI system. Aborting."
 msgstr "Kein UEFI System gefunden. Abbruch."
 
-#: guefi.desktop.in.h:1 guefi-kde.desktop.in.h:1
+#: guefi.desktop.in.h:1
 msgid "GUEFI Boot Manager"
 msgstr "GUEFI Bootmanager"
 
-#: guefi.desktop.in.h:2 guefi-kde.desktop.in.h:2
+#: guefi.desktop.in.h:2
 msgid "A graphical frontend to efibootmgr"
 msgstr "Ein grafisches Frontend zu \"efibootmgr\""
