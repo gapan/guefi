@@ -18,7 +18,7 @@ desktop:
 
 .PHONY: policy
 policy:
-	intltool-merge po/ -d -u org.salixos.guefi.policy.in org.salixos.guefi.policy
+	itstool -j org.salixos.guefi.policy.in -o org.salixos.guefi.policy po/*.mo
 
 .PHONY: updatepo
 updatepo:
@@ -29,7 +29,10 @@ updatepo:
 
 .PHONY: pot
 pot:
+	itstool -i /usr/share/gettext/its/polkit.its \
+		-o po/guefi.pot org.salixos.guefi.policy.in
 	xgettext --from-code=utf-8 \
+		-j \
 		-x po/EXCLUDE \
 		-L Glade \
 		-o po/guefi.pot \
@@ -39,17 +42,12 @@ pot:
 		-L Python \
 		-o po/guefi.pot \
 		src/guefi
-	intltool-extract --type="gettext/xml" \
-		org.salixos.guefi.policy.in
-	xgettext --from-code=utf-8 -j -L C -kN_ \
-		-o po/guefi.pot org.salixos.guefi.policy.in.h
 	intltool-extract --type="gettext/ini" \
 		guefi.desktop.in
 	sed -i '/char \*s = N_("guefi");/d' *.in.h
 	xgettext --from-code=utf-8 -j -L C -kN_ \
 		-o po/guefi.pot guefi.desktop.in.h
 	rm -f guefi.desktop.in.h
-	rm -f org.salixos.guefi.policy.in.h
 
 .PHONY: clean
 clean:
