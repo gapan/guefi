@@ -54,6 +54,7 @@ clean:
 	rm -f po/*.mo
 	rm -f po/*.po~
 	rm -f guefi.desktop
+	rm -f org.salixos.guefi.policy
 
 .PHONY: install
 install: install-icons install-mo
@@ -65,7 +66,7 @@ install: install-icons install-mo
 	install -d -m 755 $(DESTDIR)/etc
 	install -m 755 src/guefi $(DESTDIR)/usr/sbin/
 	install -m 755 src/guefi-pkexec $(DESTDIR)/usr/bin/
-	install -m 755 org.salixos.guefi.policy.in $(DESTDIR)/usr/share/polkit-1/actions/
+	install -m 755 org.salixos.guefi.policy $(DESTDIR)/usr/share/polkit-1/actions/
 	install -m 644 src/guefi.ui $(DESTDIR)/usr/share/guefi/
 	install -m 644 guefi.desktop $(DESTDIR)/usr/share/applications/
 
@@ -93,7 +94,7 @@ install-mo:
 uninstall:
 	rm -f $(DESTDIR)/usr/sbin/guefi
 	rm -f $(DESTDIR)/usr/bin/guefi-pkexec
-	rm -f $(DESTDIR)/usr/share/polkit-1/actions/com.gapan.pkexec.guefi.policy
+	rm -f $(DESTDIR)/usr/share/polkit-1/actions/org.salixos.guefi.policy
 	rm -f $(DESTDIR)/usr/share/applications/guefi.desktop
 	rm -f $(DESTDIR)/usr/share/guefi/guefi.ui
 	rm -f $(DESTDIR)/usr/share/icons/hicolor/*/apps/guefi.png

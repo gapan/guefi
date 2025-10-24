@@ -26,12 +26,12 @@ msgstr ""
 #. (itstool) path: action/description
 #: org.salixos.guefi.policy.in:10
 msgid "Run GUEFI Boot Manager as root"
-msgstr ""
+msgstr "GUEFI Boot Manager als root ausführen"
 
 #. (itstool) path: action/message
 #: org.salixos.guefi.policy.in:11
 msgid "Authentication is required to run the GUEFI Boot Manager"
-msgstr ""
+msgstr "Zur Ausführung des GUEFI Boot Managers ist eine Authentifizierung erforderlich"
 
 #: src/guefi.ui:67
 msgid "Boot Order"
