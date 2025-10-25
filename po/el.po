@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Dimitris Tzemos <dijemos@gmail.com>, 2016
-# gapan <vlahavas@gmail.com>, 2022
+# gapan <vlahavas@gmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-23 21:40+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2022\n"
+"Last-Translator: gapan <vlahavas@gmail.com>, 2025\n"
 "Language-Team: Greek (https://app.transifex.com/gapan/teams/47809/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,13 @@ msgstr ""
 #. (itstool) path: action/description
 #: org.salixos.guefi.policy.in:10
 msgid "Run GUEFI Boot Manager as root"
-msgstr ""
+msgstr "Εκτέλεση του διαχειριστή εκκίνησης GUEFI ως root"
 
 #. (itstool) path: action/message
 #: org.salixos.guefi.policy.in:11
 msgid "Authentication is required to run the GUEFI Boot Manager"
 msgstr ""
+"Απαιτείται ταυτοποίηση για να εκτελεστεί ο διαχειριστής εκκίνησης GUEFI"
 
 #: src/guefi.ui:67
 msgid "Boot Order"

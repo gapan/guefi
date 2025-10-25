@@ -6,7 +6,7 @@
 # Translators:
 # Thorsten, 2016
 # Joachim Braun <joachim.braun@mail.ru>, 2022
-# gapan <vlahavas@gmail.com>, 2024
+# gapan <vlahavas@gmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-23 21:40+0300\n"
 "PO-Revision-Date: 2016-07-13 20:13+0000\n"
-"Last-Translator: gapan <vlahavas@gmail.com>, 2024\n"
+"Last-Translator: gapan <vlahavas@gmail.com>, 2025\n"
 "Language-Team: German (https://app.transifex.com/gapan/teams/47809/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,9 @@ msgstr "GUEFI Boot Manager als root ausführen"
 #. (itstool) path: action/message
 #: org.salixos.guefi.policy.in:11
 msgid "Authentication is required to run the GUEFI Boot Manager"
-msgstr "Zur Ausführung des GUEFI Boot Managers ist eine Authentifizierung erforderlich"
+msgstr ""
+"Zur Ausführung des GUEFI Boot Managers ist eine Authentifizierung "
+"erforderlich"
 
 #: src/guefi.ui:67
 msgid "Boot Order"
